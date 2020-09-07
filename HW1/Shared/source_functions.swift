@@ -26,6 +26,9 @@ func compute_fibonacci(fib_num_amount: Int) -> String {
 func compute_factorial(fac_num_amount: Int) -> String {
     var num_array = [Int]()
     var output = 1
+    if(fac_num_amount == 0) {
+        return "0"
+    }
     for n in 1...fac_num_amount {
         num_array.append(n)
     }
@@ -37,9 +40,21 @@ func compute_factorial(fac_num_amount: Int) -> String {
 
 func compute_sum_of_all_integers(first_num: Int, second_num: Int) -> String {
     var sum = 0
-    for n in first_num...second_num {
-        sum += n
+    if(first_num == second_num) {
+        return String(first_num)
     }
+    if(first_num > second_num) {
+        for n in second_num...first_num {
+            sum += n
+        }
+    }
+    if(second_num > first_num) {
+        for n in first_num...second_num {
+            sum += n
+        }
+    }
+    
+
     return String(sum)
 }
 
@@ -130,6 +145,10 @@ func compute_coins_for_amount(amount: Int) -> String {
     }
     if(total_pennies >= 1) {
         output += "\n\(total_pennies_str) \(penny_str)"
+    }
+    
+    if(output == "") {
+        output = "Currently no coin amount"
     }
 
     return output
