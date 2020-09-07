@@ -2,7 +2,7 @@
 //  source_functions.swift
 //  HW1
 //
-//  Created by Student on 9/6/20.
+//  Created by Aaron Hayden on 9/6/20.
 //
 
 import Foundation
@@ -24,25 +24,23 @@ func compute_fibonacci(fib_num_amount: Int) -> String {
 
 // Calculate the factorial of a given number >= 0
 func compute_factorial(fac_num_amount: Int) -> String {
-    var num_array = [Int]()
     var output = 1
     if(fac_num_amount == 0) {
         return "0"
     }
     for n in 1...fac_num_amount {
-        num_array.append(n)
-    }
-    for n in num_array {
         output *= n
     }
     return String(output)
 }
 
+// Calculate the sum of all integers between two given integers
 func compute_sum_of_all_integers(first_num: Int, second_num: Int) -> String {
     var sum = 0
     if(first_num == second_num) {
         return String(first_num)
     }
+    //Flip around first and second number depending on higher number
     if(first_num > second_num) {
         for n in second_num...first_num {
             sum += n
@@ -54,10 +52,10 @@ func compute_sum_of_all_integers(first_num: Int, second_num: Int) -> String {
         }
     }
     
-
     return String(sum)
 }
 
+//Calculates the least amount of specific coins to hit a target amount
 func compute_coins_for_amount(amount: Int) -> String {
     var total_quarters = 0
     var total_dimes = 0
@@ -148,8 +146,9 @@ func compute_coins_for_amount(amount: Int) -> String {
     }
     
     if(output == "") {
-        output = "Currently no coin amount"
+        output = "No coins"
     }
 
+    print(output) //Required to print the console from HW2 assignment
     return output
 }
