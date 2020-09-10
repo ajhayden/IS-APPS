@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel: EmojiConcentrationGame
+    
     var body: some View {
         HStack {
             ForEach(0..<4, content: { index in
-                CardView(isFaceUp: true)
+                CardView(card: viewModel.cards[index])
             })
         }
         .padding()
@@ -20,13 +22,13 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    var isFaceUp: Bool
+    var card: ConcentrationGame<String>.Card
     var body: some View {
         ZStack {
-            if isFaceUp {
+            if card.isFaceUp {
                 RoundedRectangle(cornerRadius: 10).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10).stroke()
-                Text("🥨")
+                Text(card.content)
                     .font(.largeTitle)
             } else {
                 RoundedRectangle(cornerRadius: 10).fill()
@@ -38,6 +40,6 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: EmojiConcentrationGame())
     }
 }

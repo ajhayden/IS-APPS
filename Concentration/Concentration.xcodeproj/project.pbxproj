@@ -13,6 +13,8 @@
 		3FA66DCD2509AE7300DF70B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FA66DCC2509AE7300DF70B2 /* Preview Assets.xcassets */; };
 		3FA66DD82509AE7300DF70B2 /* ConcentrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DD72509AE7300DF70B2 /* ConcentrationTests.swift */; };
 		3FA66DE32509AE7300DF70B2 /* ConcentrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DE22509AE7300DF70B2 /* ConcentrationUITests.swift */; };
+		3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF02509B6A200DF70B2 /* ConcentrationGame.swift */; };
+		3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		3FA66DDE2509AE7300DF70B2 /* ConcentrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcentrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA66DE22509AE7300DF70B2 /* ConcentrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationUITests.swift; sourceTree = "<group>"; };
 		3FA66DE42509AE7300DF70B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FA66DF02509B6A200DF70B2 /* ConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationGame.swift; sourceTree = "<group>"; };
+		3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiConcentrationGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 			children = (
 				3FA66DC52509AE7200DF70B2 /* ConcentrationApp.swift */,
 				3FA66DC72509AE7200DF70B2 /* ContentView.swift */,
+				3FA66DF02509B6A200DF70B2 /* ConcentrationGame.swift */,
+				3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */,
 				3FA66DC92509AE7300DF70B2 /* Assets.xcassets */,
 				3FA66DCE2509AE7300DF70B2 /* Info.plist */,
 				3FA66DCB2509AE7300DF70B2 /* Preview Content */,
@@ -259,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */,
+				3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */,
 				3FA66DC82509AE7200DF70B2 /* ContentView.swift in Sources */,
 				3FA66DC62509AE7200DF70B2 /* ConcentrationApp.swift in Sources */,
 			);
