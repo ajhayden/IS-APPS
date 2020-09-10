@@ -9,9 +9,11 @@ import SwiftUI
 
 class EmojiConcentrationGame {
     private var game = createGame()
+    static var emojis = ["🥨", "🥑", "🥭", "🌶", "🍏"]
+    static var randomNum = Int.random(in: 2...5)
     
-    static func createGame() -> ConcentrationGame<String> {                         ConcentrationGame<String>(numberOfPairsOfCards: 2) { index in
-            index > 0 ? "🥨" : "🥑"
+    static func createGame() -> ConcentrationGame<String> {                         ConcentrationGame<String>(numberOfPairsOfCards: randomNum) { index in
+            emojis[index]
         }
     }
     // MARK: - Access to model
