@@ -7,15 +7,17 @@
 
 import SwiftUI
 
-class EmojiConcentrationGame {
-    private var game = createGame()
-    static var emojis = ["🥨", "🥑", "🥭", "🌶", "🍏"]
-    static var randomNum = Int.random(in: 2...5)
+class EmojiConcentrationGame: ObservableObject {
+    @Published private var game = createGame()
     
-    static func createGame() -> ConcentrationGame<String> {                         ConcentrationGame<String>(numberOfPairsOfCards: randomNum) { index in
+    static var emojis = ["🥨", "🥑", "🥭", "🌶", "🍏"]
+    
+    static func createGame() -> ConcentrationGame<String> {                         ConcentrationGame<String>(numberOfPairsOfCards: Int.random(in: 2...5)) {
+            index in
             emojis[index]
         }
     }
+    
     // MARK: - Access to model
     
     var cards: Array<ConcentrationGame<String>.Card> {
@@ -24,8 +26,8 @@ class EmojiConcentrationGame {
     
     // MARK: - Intents
     
-    func choose(card: ConcentrationGame<String>.Card) {
-        game.choose(card: card)
+    func choose(_ card: ConcentrationGame<String>.Card) {
+        game.choose(card)
     }
     
 }
