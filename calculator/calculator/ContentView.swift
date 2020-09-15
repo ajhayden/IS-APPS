@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    let data = ["C", "( )", "%", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "+/-", "0", ".", "="]
+    let data = ["C", "( )", "%", "/",
+                "7", "8", "9", "*",
+                "4", "5", "6", "-",
+                "1", "2", "3", "+",
+                "+/-", "0", ".", "="]
     @ObservedObject var result: calculationObj
     
     let columns = [
