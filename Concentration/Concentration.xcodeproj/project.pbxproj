@@ -16,7 +16,7 @@
 		3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF02509B6A200DF70B2 /* ConcentrationGame.swift */; };
 		3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */; };
 		3FA66DF6250A6F7F00DF70B2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF5250A6F7F00DF70B2 /* CardView.swift */; };
-		3FA66DFA250A79A400DF70B2 /* Array+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF9250A79A400DF70B2 /* Array+Index.swift */; };
+		3FA66DFA250A79A400DF70B2 /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF9250A79A400DF70B2 /* Array+Identifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		3FA66DF02509B6A200DF70B2 /* ConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationGame.swift; sourceTree = "<group>"; };
 		3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiConcentrationGame.swift; sourceTree = "<group>"; };
 		3FA66DF5250A6F7F00DF70B2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		3FA66DF9250A79A400DF70B2 /* Array+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
+		3FA66DF9250A79A400DF70B2 /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +169,7 @@
 		3FA66DFB250A79BE00DF70B2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				3FA66DF9250A79A400DF70B2 /* Array+Index.swift */,
+				3FA66DF9250A79A400DF70B2 /* Array+Identifiable.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 				3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */,
 				3FA66DC82509AE7200DF70B2 /* EmojiConcentrationGameView.swift in Sources */,
 				3FA66DC62509AE7200DF70B2 /* ConcentrationApp.swift in Sources */,
-				3FA66DFA250A79A400DF70B2 /* Array+Index.swift in Sources */,
+				3FA66DFA250A79A400DF70B2 /* Array+Identifiable.swift in Sources */,
 				3FA66DF6250A6F7F00DF70B2 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
