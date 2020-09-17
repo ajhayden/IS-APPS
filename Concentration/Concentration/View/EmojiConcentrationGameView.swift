@@ -12,7 +12,6 @@ struct EmojiConcentrationGameView: View {
     
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
-        
     }
     
     var body: some View {
@@ -26,7 +25,31 @@ struct EmojiConcentrationGameView: View {
                 }
             }
             .padding()
-            .foregroundColor(.blue)
+            .foregroundColor(.purple)
+            
+            HStack {
+                VStack {
+                    Text("Score: \(emojiGame.result)")
+                        .bold()
+                        .foregroundColor(Color.purple)
+                        .font(.system(size: 20))
+                }
+                .padding(.leading, 130)
+                Spacer()
+                VStack {
+                    Button(action: {
+                        emojiGame.resetCards()
+                    }) {
+                        Text("New Game")
+                            .foregroundColor(Color.white)
+                            .frame(width: 110, height: 80)
+                            .background(Color.black)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .font(.system(size: 19))                    }
+                }
+            }
+            .padding(.top, 600)
+            .padding()
         }
     }
     
