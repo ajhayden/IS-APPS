@@ -8,10 +8,10 @@
 import Foundation
 
 struct ConcentrationGame<CardContent> where CardContent: Equatable {
-    var cards: Array<Card>
+    private(set) var cards: Array<Card>
     var result = 0
     
-    var indexOfTheOneAndOnlyOneFaceUpCard: Int? {
+    private var indexOfTheOneAndOnlyOneFaceUpCard: Int? {
         get { cards.indices.filter { cards[$0].isFaceUp }.only }
         
         set {
@@ -40,11 +40,11 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
-                    result = result + 2
+                    result += 2
                     // Make the cards the vanish and nothing happens
                 } else {
                     if(cards[chosenIndex].isChecked == true || cards[potentialMatchIndex].isChecked == true) {
-                        result = result - 1
+                        result -= 1
                     }
                     cards[chosenIndex].isChecked = true
                     cards[potentialMatchIndex].isChecked = true
@@ -57,10 +57,10 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
     }
 
     struct Card: Identifiable {
-        var isFaceUp = false
-        var isMatched = false
-        var isChecked = false
-        var content: CardContent
-        var id: Int
+        fileprivate(set) var isFaceUp = false
+        fileprivate(set) var isMatched = false
+        fileprivate(set) var isChecked = false
+        fileprivate(set) var content: CardContent
+        fileprivate(set) var id: Int
     }
 }

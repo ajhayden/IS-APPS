@@ -15,11 +15,11 @@ struct CardView: View {
                 if card.isFaceUp {
                     RoundedRectangle(cornerRadius: cardCornerRadius).fill(Color.white)
                     RoundedRectangle(cornerRadius: cardCornerRadius).stroke()
-                        Text(card.content)
+                    Pie(startAngle: Angle.degrees(0-90), endAngle: Angle.degrees(360-90)).padding()
+                    Text(card.content)
                             .font(systemFont(for: geometry.size))
                 } else if card.isMatched {
                     RoundedRectangle(cornerRadius: cardCornerRadius).fill(Color.white)
-                    RoundedRectangle(cornerRadius: cardCornerRadius).stroke()
                 } else {
                     RoundedRectangle(cornerRadius: cardCornerRadius).fill()
                 }
@@ -31,6 +31,7 @@ struct CardView: View {
     private func systemFont(for size: CGSize) -> Font {
         return Font.system(size: min(size.width, size.height * fontScaleFactor))
     }
+    
     // MARK: - Drawing constants
     
     private let cardCornerRadius: CGFloat = 10.0
