@@ -25,8 +25,18 @@ class EmojiConcentrationGame: ObservableObject {
         game.cards
     }
     
-    var result: String {
-        String(game.result)
+    var score: Int {
+        var totalScore = 0
+        
+        for card in cards {
+            if card.isMatched {
+                totalScore += 1
+            }
+            
+            totalScore -= card.mismatchedCount
+        }
+        
+        return totalScore
     }
     
     // MARK: - Intents

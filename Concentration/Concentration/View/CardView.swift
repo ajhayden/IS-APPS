@@ -12,16 +12,16 @@ struct CardView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                if card.isFaceUp {
-                    RoundedRectangle(cornerRadius: cardCornerRadius).fill(Color.white)
-                    RoundedRectangle(cornerRadius: cardCornerRadius).stroke()
-                    Pie(startAngle: Angle.degrees(0-90), endAngle: Angle.degrees(360-90)).padding()
-                    Text(card.content)
-                            .font(systemFont(for: geometry.size))
-                } else if card.isMatched {
-                    RoundedRectangle(cornerRadius: cardCornerRadius).fill(Color.white)
-                } else {
-                    RoundedRectangle(cornerRadius: cardCornerRadius).fill()
+                if card.isFaceUp || !card.isMatched {
+                    if card.isFaceUp {
+                        RoundedRectangle(cornerRadius: cardCornerRadius).fill(Color.white)
+                        RoundedRectangle(cornerRadius: cardCornerRadius).stroke()
+                        Pie(startAngle: Angle.degrees(0-90), endAngle: Angle.degrees(360-90)).padding()
+                        Text(card.content)
+                                .font(systemFont(for: geometry.size))
+                    } else {
+                        RoundedRectangle(cornerRadius: cardCornerRadius).fill()
+                    }
                 }
             }
         }
