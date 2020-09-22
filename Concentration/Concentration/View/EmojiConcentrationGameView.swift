@@ -13,7 +13,7 @@ struct EmojiConcentrationGameView: View {
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
     }
-    
+     
     var body: some View {
         ScrollView {
             VStack {
@@ -38,7 +38,9 @@ struct EmojiConcentrationGameView: View {
                         ForEach(emojiGame.cards) { card in
                             CardView(card: card)
                                 .onTapGesture {
-                                emojiGame.choose(card)
+                                    withAnimation {
+                                        emojiGame.choose(card)
+                                    }
                             }
                         }
                     }
