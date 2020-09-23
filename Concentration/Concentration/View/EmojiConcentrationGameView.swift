@@ -23,12 +23,16 @@ struct EmojiConcentrationGameView: View {
                         .foregroundColor(Color.purple)
                         .font(.system(size: 20))
                     Spacer()
-                    Button("New Game", action: emojiGame.resetCards)
-                            .foregroundColor(Color.white)
-                            .frame(width: 110, height: 60)
-                            .background(Color.black)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .font(.system(size: 19))
+                    Button("New Game") {
+                        withAnimation(.easeInOut) {
+                            emojiGame.resetCards()
+                        }
+                    }
+                    .foregroundColor(Color.white)
+                    .frame(width: 110, height: 60)
+                    .background(Color.purple)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .font(.system(size: 19))
                 }
                 .padding(.top, 20)
                 .padding(.leading, 40)
@@ -38,7 +42,7 @@ struct EmojiConcentrationGameView: View {
                         ForEach(emojiGame.cards) { card in
                             CardView(card: card)
                                 .onTapGesture {
-                                    withAnimation {
+                                    withAnimation(.linear(duration: 0.5)) {
                                         emojiGame.choose(card)
                                     }
                             }
