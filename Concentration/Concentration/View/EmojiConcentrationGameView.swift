@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmojiConcentrationGameView: View {
     @ObservedObject var emojiGame: EmojiConcentrationGame
+    var cardColor: Color = Color.black
     
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
@@ -20,7 +21,7 @@ struct EmojiConcentrationGameView: View {
                 HStack {
                     Text("Score: \(emojiGame.score)")
                         .bold()
-                        .foregroundColor(Color.purple)
+                        .foregroundColor(cardColor)
                         .font(.system(size: 20))
                     Spacer()
                     Button("New Game") {
@@ -30,7 +31,7 @@ struct EmojiConcentrationGameView: View {
                     }
                     .foregroundColor(Color.white)
                     .frame(width: 110, height: 60)
-                    .background(Color.purple)
+                    .background(cardColor)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .font(.system(size: 19))
                 }
@@ -51,11 +52,10 @@ struct EmojiConcentrationGameView: View {
                     .padding(.top, 20)
                     .padding(.leading, 40)
                     .padding(.trailing, 40)
-                    .foregroundColor(.purple)
+                    .foregroundColor(cardColor)
                 }
             }
         }
-        
     }
     
     //MARK: - Drawing constants

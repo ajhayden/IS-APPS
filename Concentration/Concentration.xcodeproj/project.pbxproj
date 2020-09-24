@@ -11,6 +11,8 @@
 		3F62BB0B2513B1B30040400D /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62BB0A2513B1B30040400D /* Pie.swift */; };
 		3F62BB0D251978160040400D /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62BB0C251978160040400D /* Cardify.swift */; };
 		3F98A7F1251BFB1C00692280 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F0251BFB1C00692280 /* Home.swift */; };
+		3F98A7F3251C097B00692280 /* EmojiGameOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F2251C097B00692280 /* EmojiGameOptions.swift */; };
+		3F98A7F5251C1BA300692280 /* GameScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F4251C1BA300692280 /* GameScores.swift */; };
 		3FA66DC62509AE7200DF70B2 /* ConcentrationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DC52509AE7200DF70B2 /* ConcentrationApp.swift */; };
 		3FA66DC82509AE7200DF70B2 /* EmojiConcentrationGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */; };
 		3FA66DCA2509AE7300DF70B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FA66DC92509AE7300DF70B2 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		3F62BB0A2513B1B30040400D /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		3F62BB0C251978160040400D /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		3F98A7F0251BFB1C00692280 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		3F98A7F2251C097B00692280 /* EmojiGameOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGameOptions.swift; sourceTree = "<group>"; };
+		3F98A7F4251C1BA300692280 /* GameScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScores.swift; sourceTree = "<group>"; };
 		3FA66DC22509AE7200DF70B2 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA66DC52509AE7200DF70B2 /* ConcentrationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationApp.swift; sourceTree = "<group>"; };
 		3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiConcentrationGameView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				3F62BB0A2513B1B30040400D /* Pie.swift */,
 				3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */,
 				3F98A7F0251BFB1C00692280 /* Home.swift */,
+				3F98A7F4251C1BA300692280 /* GameScores.swift */,
+				3F98A7F2251C097B00692280 /* EmojiGameOptions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F98A7F5251C1BA300692280 /* GameScores.swift in Sources */,
+				3F98A7F3251C097B00692280 /* EmojiGameOptions.swift in Sources */,
 				3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */,
 				3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */,
 				3F98A7F1251BFB1C00692280 /* Home.swift in Sources */,
