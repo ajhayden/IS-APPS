@@ -7,19 +7,36 @@
 
 import SwiftUI
 
-
+class EmojiTheme: Identifiable {
+    var name: String
+    var emojis: [String]
+    var color: Color
+    var numberOfPairsOfCards: Int
+    
+    init(name: String, emojis: [String], color: Color, numberOfPairsOfCards: Int) {
+        self.name = name
+        self.emojis = emojis
+        self.color = color
+        self.numberOfPairsOfCards = numberOfPairsOfCards
+    }
+}
 
 class EmojiConcentrationGame: ObservableObject {
     @Published private var game = createGame()
+    static var indexOfTheme: Int = -1
     
-    var emojiType = "animal"
-    
-    private static var emojis = ["🦉", "🦆", "🦘", "🐿", "🦔"]
-    private static var emojis_breads = ["🥐", "🍞", "🥖", "🧇", "🥯"]
-    private static var emojis_faces = ["😀", "😉", "😇", "😡", "😜"]
-    private static var emojis_fruits = ["🍓", "🍐", "🍊", "🍑", "🥝"]
-    private static var emojis_sports = ["🏀", "⚽️", "🏈", "⚾️", "🎾"]
-    private static var emojis_random = [randomEmoji(), randomEmoji(), randomEmoji(), randomEmoji(), randomEmoji()]
+    init(indexOfTheme: Int) {
+        EmojiConcentrationGame.indexOfTheme = indexOfTheme
+    }
+
+    static var emojis = [
+        EmojiTheme(name: "Animals", emojis: ["🦉", "🦆", "🦘", "🐿", "🦔"], color: Color.purple, numberOfPairsOfCards: 3),
+        EmojiTheme(name: "Breads", emojis: ["🥐", "🍞", "🥖", "🧇", "🥯"], color: Color.green, numberOfPairsOfCards: 3),
+        EmojiTheme(name: "Faces", emojis: ["😀", "😉", "😇", "😡", "😜"], color: Color.yellow, numberOfPairsOfCards: 3),
+        EmojiTheme(name: "Fruits", emojis: ["🍓", "🍐", "🍊", "🍑", "🥝"], color: Color.orange, numberOfPairsOfCards: 3),
+        EmojiTheme(name: "Sports", emojis: ["🏀", "⚽️", "🏈", "⚾️", "🎾"], color: Color.red, numberOfPairsOfCards: 3),
+        EmojiTheme(name: "Random", emojis: [randomEmoji(), randomEmoji(), randomEmoji(), randomEmoji(), randomEmoji()], color: Color.blue, numberOfPairsOfCards: 3)
+    ]
     
     private static func randomEmoji()->String{
             let emojiStart = 0x1F601
@@ -27,11 +44,10 @@ class EmojiConcentrationGame: ObservableObject {
             let emoji = UnicodeScalar(ascii)?.description
             return emoji ?? "x"
     }
-    
     private static func createGame() -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: Int.random(in: 2...5)) {
+        ConcentrationGame<String>(numberOfPairsOfCards: emojis[indexOfTheme == -1 ? 0 : EmojiConcentrationGame.indexOfTheme + 1].numberOfPairsOfCards) {
             index in
-            emojis_random[index]
+            emojis[indexOfTheme == -1 ? 0 : EmojiConcentrationGame.indexOfTheme + 1].emojis[index]
         }
     }
     

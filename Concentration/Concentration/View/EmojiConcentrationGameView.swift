@@ -24,7 +24,7 @@ struct EmojiConcentrationGameView: View {
                         .foregroundColor(cardColor)
                         .font(.system(size: 20))
                     Spacer()
-                    Button("New Game") {
+                    Button("New Game \(EmojiConcentrationGame.indexOfTheme)") {
                         withAnimation(.easeInOut) {
                             emojiGame.resetCards()
                         }
@@ -65,6 +65,6 @@ struct EmojiConcentrationGameView: View {
 
 struct EmojiConcentrationGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame())
+        EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: 0))
     }
 }

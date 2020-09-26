@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct EmojiGameOptions: View {
+    
+    var emojiThemes = EmojiConcentrationGame.emojis
+
     var body: some View {
         VStack {
             Text("Emoji Mojo")
@@ -16,65 +19,18 @@ struct EmojiGameOptions: View {
                 .font(.system(size: 30))
                 .padding()
             
-            NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(), cardColor: Color.purple)) {
-                Text("Animals")
+            ForEach(emojiThemes.indices) { index in
+                NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: index), cardColor: emojiThemes[index].color)) {
+                    Text("\(emojiThemes[index].name) and \(index)")
+                }
+                .foregroundColor(Color.white)
+                .frame(width: 200, height: 60)
+                .background(emojiThemes[index].color)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .font(.system(size: 19))
+                .padding()
             }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 60)
-            .background(Color.purple)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .font(.system(size: 19))
-            .padding()
 
-            NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(), cardColor: Color.green)) {
-                Text("Breads")
-            }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 60)
-            .background(Color.green)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .font(.system(size: 19))
-            .padding()
-            
-            NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(), cardColor: Color.yellow)) {
-                Text("Faces")
-            }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 60)
-            .background(Color.yellow)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .font(.system(size: 19))
-            .padding()
-            
-            NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(), cardColor: Color.orange)) {
-                Text("Fruits")
-            }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 60)
-            .background(Color.orange)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .font(.system(size: 19))
-            .padding()
-            
-            NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(), cardColor: Color.red)) {
-                Text("Halloween")
-            }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 60)
-            .background(Color.red)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .font(.system(size: 19))
-            .padding()
-            
-            NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(), cardColor: Color.blue)) {
-                Text("Random")
-            }
-            .foregroundColor(Color.white)
-            .frame(width: 200, height: 60)
-            .background(Color.blue)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .font(.system(size: 19))
-            .padding()
         }
     }
 }
