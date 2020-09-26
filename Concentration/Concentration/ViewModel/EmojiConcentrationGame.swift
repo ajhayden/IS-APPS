@@ -23,7 +23,8 @@ class EmojiTheme: Identifiable {
 
 class EmojiConcentrationGame: ObservableObject {
     @Published private var game = createGame()
-    static var indexOfTheme: Int = -1
+    
+    static var indexOfTheme: Int = 0
     
     init(indexOfTheme: Int) {
         EmojiConcentrationGame.indexOfTheme = indexOfTheme
@@ -44,10 +45,11 @@ class EmojiConcentrationGame: ObservableObject {
             let emoji = UnicodeScalar(ascii)?.description
             return emoji ?? "x"
     }
+    
     private static func createGame() -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: emojis[indexOfTheme == -1 ? 0 : EmojiConcentrationGame.indexOfTheme + 1].numberOfPairsOfCards) {
+        ConcentrationGame<String>(numberOfPairsOfCards: emojis[EmojiConcentrationGame.indexOfTheme].numberOfPairsOfCards) {
             index in
-            emojis[indexOfTheme == -1 ? 0 : EmojiConcentrationGame.indexOfTheme + 1].emojis[index]
+            emojis[EmojiConcentrationGame.indexOfTheme].emojis[index]
         }
     }
     

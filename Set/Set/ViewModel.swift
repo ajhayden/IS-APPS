@@ -8,7 +8,7 @@
 import Foundation
 
 class ViewModel: ObservableObject {
-    @Published private var model = Model(cards: [])
+    @Published private var model = Model(cardCount: 2)
     
     // MARK: - Model access
     

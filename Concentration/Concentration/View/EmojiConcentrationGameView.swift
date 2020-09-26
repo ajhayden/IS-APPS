@@ -24,7 +24,7 @@ struct EmojiConcentrationGameView: View {
                         .foregroundColor(cardColor)
                         .font(.system(size: 20))
                     Spacer()
-                    Button("New Game \(EmojiConcentrationGame.indexOfTheme)") {
+                    Button("New Game") {
                         withAnimation(.easeInOut) {
                             emojiGame.resetCards()
                         }
@@ -42,6 +42,9 @@ struct EmojiConcentrationGameView: View {
                     LazyVGrid(columns: columns(for: geometry.size) ) {
                         ForEach(emojiGame.cards) { card in
                             CardView(card: card)
+                                .transition(AnyTransition.offset(
+                                    randomLocationOffScreen(for: geometry.size)
+                                ))
                                 .onTapGesture {
                                     withAnimation(.linear(duration: 0.5)) {
                                         emojiGame.choose(card)
@@ -56,6 +59,18 @@ struct EmojiConcentrationGameView: View {
                 }
             }
         }
+    }
+    
+
+    func randomLocationOffScreen(for size: CGSize) -> CGSize {
+        var randomSize = CGSize.zero
+        let randomAngle = Double.random(in: 0..<Double.pi * 2)
+        let scaleFactor = max(size.width, size.height) * 1.5
+        
+        randomSize.width = CGFloat(sin(randomAngle)) * scaleFactor
+        randomSize.height = CGFloat(cos(randomAngle)) * scaleFactor
+        
+        return randomSize
     }
     
     //MARK: - Drawing constants

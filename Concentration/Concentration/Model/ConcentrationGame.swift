@@ -53,7 +53,7 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
             }
         }
     }
-
+    
     struct Card: Identifiable {
         private let matchScore = 5
         private let maxMathBonus = 5.0
