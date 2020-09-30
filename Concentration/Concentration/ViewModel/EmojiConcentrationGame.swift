@@ -97,10 +97,4 @@ class EmojiConcentrationGame: ObservableObject {
         game = EmojiConcentrationGame.createGame(indexOfTheme)
     }
     
-    func setHighScore(gameHighScore: Int) {
-//        if(EmojiConcentrationGame.emojiHighScore < gameHighScore) {
-//            EmojiConcentrationGame.emojiHighScore = gameHighScore
-//        }
-    }
-    
 }

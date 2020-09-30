@@ -60,8 +60,6 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
         if(cardsMatched == cards.count) {
             let possibleNewScore: Int = Int(score)! + 2
             let stringScore: String = defaults.string(forKey: "\(gameType)\(gameTheme)HighScore") ?? "Unplayed"
-            print(stringScore)
-            print("\(gameType)\(gameTheme)HighScore")
             if(stringScore != "Unplayed") {
                 let oldScore: Int = Int(stringScore)!
                 if(possibleNewScore > oldScore) {

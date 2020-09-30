@@ -56,7 +56,7 @@ struct Home: View {
                 .font(.system(size: 19))
                 .padding()
                 
-                NavigationLink(destination: GameScores(highScoreViewModel: HighScoreViewModel(indexOfTheme: 0))) {
+                NavigationLink(destination: GameScores(highScoreViewModel: HighScoreViewModel())) {
                     Text("High Scores")
                 }
                 .foregroundColor(Color.white)
