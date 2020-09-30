@@ -60,7 +60,7 @@ struct CardView: View {
     
     // MARK: - Drawing constants
     
-    private let cardAspectRatio: CGFloat = 2/3
+    private let cardAspectRatio: CGFloat = 9/10
     private let fontScaleFactor: CGFloat = 0.70
 }
 

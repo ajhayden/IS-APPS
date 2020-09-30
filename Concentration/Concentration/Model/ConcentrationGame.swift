@@ -9,7 +9,8 @@ import Foundation
 
 struct ConcentrationGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
-    var result = 0
+    
+    let defaults = UserDefaults.standard
     
     private var indexOfTheOneAndOnlyOneFaceUpCard: Int? {
         get { cards.indices.filter { cards[$0].isFaceUp }.only }
@@ -23,7 +24,7 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
 
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         cards = Array<Card>()
-
+        
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = cardContentFactory(pairIndex)
 
@@ -33,8 +34,10 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
 
         cards.shuffle()
     }
+    
+    var cardsMatched = 0
 
-    mutating func choose(_ card: Card) {
+    mutating func choose(_ card: Card, _ gameType: String, _ gameTheme: String, _ score: String) {
         if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched {
             
             cards[chosenIndex].viewedCount += 1
@@ -43,6 +46,7 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
+                    cardsMatched = cardsMatched + 2
                 } else {
                     cards[chosenIndex].markMismatched()
                     cards[potentialMatchIndex].markMismatched()
@@ -50,6 +54,21 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
                 cards[chosenIndex].isFaceUp = true
             } else {
                 indexOfTheOneAndOnlyOneFaceUpCard = chosenIndex
+            }
+        }
+        
+        if(cardsMatched == cards.count) {
+            let possibleNewScore: Int = Int(score)! + 2
+            let stringScore: String = defaults.string(forKey: "\(gameType)\(gameTheme)HighScore") ?? "Unplayed"
+            print(stringScore)
+            print("\(gameType)\(gameTheme)HighScore")
+            if(stringScore != "Unplayed") {
+                let oldScore: Int = Int(stringScore)!
+                if(possibleNewScore > oldScore) {
+                    defaults.set(possibleNewScore, forKey: "\(gameType)\(gameTheme)HighScore")
+                }
+            } else {
+                defaults.set(possibleNewScore, forKey: "\(gameType)\(gameTheme)HighScore")
             }
         }
     }

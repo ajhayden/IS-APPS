@@ -10,8 +10,15 @@
 		3F307607251294D0006863C8 /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F307606251294D0006863C8 /* Array+Only.swift */; };
 		3F62BB0B2513B1B30040400D /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62BB0A2513B1B30040400D /* Pie.swift */; };
 		3F62BB0D251978160040400D /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62BB0C251978160040400D /* Cardify.swift */; };
+		3F8259EB252283CC00F23CF8 /* TempleConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259EA252283CC00F23CF8 /* TempleConcentrationGame.swift */; };
+		3F8259ED2522876700F23CF8 /* TempleGameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259EC2522876700F23CF8 /* TempleGameOptionsView.swift */; };
+		3F8259EF252289B700F23CF8 /* TempleConcentrationGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259EE252289B700F23CF8 /* TempleConcentrationGameView.swift */; };
+		3F8259F125228A4800F23CF8 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259F025228A4800F23CF8 /* ImageCardView.swift */; };
+		3F8259F325237F6900F23CF8 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259F225237F6900F23CF8 /* SoundPlayer.swift */; };
+		3F8259F6252429D300F23CF8 /* KeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259F5252429D300F23CF8 /* KeyStore.swift */; };
+		3F8259FC2524560600F23CF8 /* HighScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259FB2524560600F23CF8 /* HighScoreViewModel.swift */; };
 		3F98A7F1251BFB1C00692280 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F0251BFB1C00692280 /* Home.swift */; };
-		3F98A7F3251C097B00692280 /* EmojiGameOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F2251C097B00692280 /* EmojiGameOptions.swift */; };
+		3F98A7F3251C097B00692280 /* EmojiGameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F2251C097B00692280 /* EmojiGameOptionsView.swift */; };
 		3F98A7F5251C1BA300692280 /* GameScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A7F4251C1BA300692280 /* GameScores.swift */; };
 		3FA66DC62509AE7200DF70B2 /* ConcentrationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DC52509AE7200DF70B2 /* ConcentrationApp.swift */; };
 		3FA66DC82509AE7200DF70B2 /* EmojiConcentrationGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */; };
@@ -46,8 +53,15 @@
 		3F307606251294D0006863C8 /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
 		3F62BB0A2513B1B30040400D /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		3F62BB0C251978160040400D /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
+		3F8259EA252283CC00F23CF8 /* TempleConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempleConcentrationGame.swift; sourceTree = "<group>"; };
+		3F8259EC2522876700F23CF8 /* TempleGameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempleGameOptionsView.swift; sourceTree = "<group>"; };
+		3F8259EE252289B700F23CF8 /* TempleConcentrationGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempleConcentrationGameView.swift; sourceTree = "<group>"; };
+		3F8259F025228A4800F23CF8 /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		3F8259F225237F6900F23CF8 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		3F8259F5252429D300F23CF8 /* KeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStore.swift; sourceTree = "<group>"; };
+		3F8259FB2524560600F23CF8 /* HighScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewModel.swift; sourceTree = "<group>"; };
 		3F98A7F0251BFB1C00692280 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		3F98A7F2251C097B00692280 /* EmojiGameOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGameOptions.swift; sourceTree = "<group>"; };
+		3F98A7F2251C097B00692280 /* EmojiGameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGameOptionsView.swift; sourceTree = "<group>"; };
 		3F98A7F4251C1BA300692280 /* GameScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScores.swift; sourceTree = "<group>"; };
 		3FA66DC22509AE7200DF70B2 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA66DC52509AE7200DF70B2 /* ConcentrationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationApp.swift; sourceTree = "<group>"; };
@@ -92,6 +106,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F8259F4252381C300F23CF8 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		3FA66DB92509AE7200DF70B2 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				3FA66DF02509B6A200DF70B2 /* ConcentrationGame.swift */,
+				3F8259F5252429D300F23CF8 /* KeyStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,11 +188,14 @@
 			children = (
 				3F62BB0C251978160040400D /* Cardify.swift */,
 				3FA66DF5250A6F7F00DF70B2 /* CardView.swift */,
+				3F8259F025228A4800F23CF8 /* ImageCardView.swift */,
 				3F62BB0A2513B1B30040400D /* Pie.swift */,
-				3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */,
 				3F98A7F0251BFB1C00692280 /* Home.swift */,
+				3F98A7F2251C097B00692280 /* EmojiGameOptionsView.swift */,
+				3F8259EC2522876700F23CF8 /* TempleGameOptionsView.swift */,
+				3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */,
+				3F8259EE252289B700F23CF8 /* TempleConcentrationGameView.swift */,
 				3F98A7F4251C1BA300692280 /* GameScores.swift */,
-				3F98A7F2251C097B00692280 /* EmojiGameOptions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */,
+				3F8259EA252283CC00F23CF8 /* TempleConcentrationGame.swift */,
+				3F8259FB2524560600F23CF8 /* HighScoreViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +215,8 @@
 			children = (
 				3FA66DF9250A79A400DF70B2 /* Array+Identifiable.swift */,
 				3F307606251294D0006863C8 /* Array+Only.swift */,
+				3F8259F225237F6900F23CF8 /* SoundPlayer.swift */,
+				3F8259F4252381C300F23CF8 /* Sounds */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -322,16 +351,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F98A7F5251C1BA300692280 /* GameScores.swift in Sources */,
-				3F98A7F3251C097B00692280 /* EmojiGameOptions.swift in Sources */,
+				3F8259F6252429D300F23CF8 /* KeyStore.swift in Sources */,
+				3F98A7F3251C097B00692280 /* EmojiGameOptionsView.swift in Sources */,
+				3F8259EF252289B700F23CF8 /* TempleConcentrationGameView.swift in Sources */,
 				3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */,
 				3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */,
+				3F8259ED2522876700F23CF8 /* TempleGameOptionsView.swift in Sources */,
+				3F8259F125228A4800F23CF8 /* ImageCardView.swift in Sources */,
 				3F98A7F1251BFB1C00692280 /* Home.swift in Sources */,
 				3F62BB0B2513B1B30040400D /* Pie.swift in Sources */,
 				3F62BB0D251978160040400D /* Cardify.swift in Sources */,
 				3FA66DC82509AE7200DF70B2 /* EmojiConcentrationGameView.swift in Sources */,
 				3FA66DC62509AE7200DF70B2 /* ConcentrationApp.swift in Sources */,
+				3F8259EB252283CC00F23CF8 /* TempleConcentrationGame.swift in Sources */,
 				3FA66DFA250A79A400DF70B2 /* Array+Identifiable.swift in Sources */,
 				3F307607251294D0006863C8 /* Array+Only.swift in Sources */,
+				3F8259FC2524560600F23CF8 /* HighScoreViewModel.swift in Sources */,
+				3F8259F325237F6900F23CF8 /* SoundPlayer.swift in Sources */,
 				3FA66DF6250A6F7F00DF70B2 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

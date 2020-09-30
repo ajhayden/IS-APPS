@@ -1,5 +1,5 @@
 //
-//  EmojiGameOptions.swift
+//  EmojiGameOptionsView.swift
 //  Concentration
 //
 //  Created by Student on 9/23/20.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct EmojiGameOptions: View {
+struct EmojiGameOptionsView: View {
     
-    var emojiThemes = EmojiConcentrationGame.emojis
-
+    var emojiThemes = EmojiConcentrationGame.emojiThemes
+    
     var body: some View {
         VStack {
             Text("Emoji Mojo")
@@ -21,7 +21,7 @@ struct EmojiGameOptions: View {
             
             ForEach(emojiThemes.indices) { index in
                 NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: index), cardColor: emojiThemes[index].color)) {
-                    Text("\(emojiThemes[index].name) and \(index)")
+                    Text("\(emojiThemes[index].name)")
                 }
                 .foregroundColor(Color.white)
                 .frame(width: 200, height: 60)
@@ -35,8 +35,8 @@ struct EmojiGameOptions: View {
     }
 }
 
-struct EmojiGameOptions_Previews: PreviewProvider {
+struct EmojiGameOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiGameOptions()
+        EmojiGameOptionsView()
     }
 }

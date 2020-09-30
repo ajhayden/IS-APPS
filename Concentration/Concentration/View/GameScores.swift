@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct GameScores: View {
+    
+    @ObservedObject var highScoreViewModel: HighScoreViewModel
+    
     var body: some View {
         VStack {
-            Text("High Scores")
+            Text("\(highScoreViewModel.userDefault.string(forKey: "emojiAnimalsHighScore") ?? "Unplayed")")
+                .bold()
+                .foregroundColor(Color.black)
+                .font(.system(size: 30))
+                .padding()
+            Text("\(highScoreViewModel.userDefault.string(forKey: "emojiSportsHighScore") ?? "Unplayed")")
                 .bold()
                 .foregroundColor(Color.black)
                 .font(.system(size: 30))
@@ -21,6 +29,6 @@ struct GameScores: View {
 
 struct GameScores_Previews: PreviewProvider {
     static var previews: some View {
-        GameScores()
+        GameScores(highScoreViewModel: HighScoreViewModel(indexOfTheme: 0))
     }
 }

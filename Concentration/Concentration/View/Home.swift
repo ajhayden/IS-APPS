@@ -16,7 +16,7 @@ struct Home: View {
                     .foregroundColor(Color.blue)
                     .font(.system(size: 30))
                     .padding()
-                NavigationLink(destination: EmojiGameOptions()) {
+                NavigationLink(destination: EmojiGameOptionsView()) {
                     Text("Emoji Mojo")
                 }
                 .foregroundColor(Color.white)
@@ -26,8 +26,8 @@ struct Home: View {
                 .font(.system(size: 19))
                 .padding()
 
-                NavigationLink(destination: EmojiGameOptions()) {
-                    Text("Shape Scape")
+                NavigationLink(destination: TempleGameOptionsView()) {
+                    Text("Temple Match")
                 }
                 .foregroundColor(Color.white)
                 .frame(width: 200, height: 60)
@@ -36,8 +36,8 @@ struct Home: View {
                 .font(.system(size: 19))
                 .padding()
                 
-                NavigationLink(destination: EmojiGameOptions()) {
-                    Text("Temple Match")
+                NavigationLink(destination: EmojiGameOptionsView()) {
+                    Text("Shape Scape")
                 }
                 .foregroundColor(Color.white)
                 .frame(width: 200, height: 60)
@@ -46,7 +46,7 @@ struct Home: View {
                 .font(.system(size: 19))
                 .padding()
                 
-                NavigationLink(destination: EmojiGameOptions()) {
+                NavigationLink(destination: EmojiGameOptionsView()) {
                     Text("Basketball Bounce")
                 }
                 .foregroundColor(Color.white)
@@ -56,7 +56,7 @@ struct Home: View {
                 .font(.system(size: 19))
                 .padding()
                 
-                NavigationLink(destination: GameScores()) {
+                NavigationLink(destination: GameScores(highScoreViewModel: HighScoreViewModel(indexOfTheme: 0))) {
                     Text("High Scores")
                 }
                 .foregroundColor(Color.white)

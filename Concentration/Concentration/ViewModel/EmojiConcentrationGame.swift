@@ -22,34 +22,43 @@ class EmojiTheme: Identifiable {
 }
 
 class EmojiConcentrationGame: ObservableObject {
-    @Published private var game = createGame()
+    @Published private var game: ConcentrationGame<String>
     
-    static var indexOfTheme: Int = 0
+    var indexOfTheme: Int
     
-    init(indexOfTheme: Int) {
-        EmojiConcentrationGame.indexOfTheme = indexOfTheme
+    init(indexOfTheme: Int = 0) {
+        self.indexOfTheme = indexOfTheme
+        EmojiConcentrationGame.emojiThemes[EmojiConcentrationGame.emojiThemes.count - 1] = EmojiConcentrationGame.randomEmojiTheme()
+        game = EmojiConcentrationGame.createGame(indexOfTheme)
     }
-
-    static var emojis = [
-        EmojiTheme(name: "Animals", emojis: ["🦉", "🦆", "🦘", "🐿", "🦔"], color: Color.purple, numberOfPairsOfCards: 3),
-        EmojiTheme(name: "Breads", emojis: ["🥐", "🍞", "🥖", "🧇", "🥯"], color: Color.green, numberOfPairsOfCards: 3),
-        EmojiTheme(name: "Faces", emojis: ["😀", "😉", "😇", "😡", "😜"], color: Color.yellow, numberOfPairsOfCards: 3),
-        EmojiTheme(name: "Fruits", emojis: ["🍓", "🍐", "🍊", "🍑", "🥝"], color: Color.orange, numberOfPairsOfCards: 3),
-        EmojiTheme(name: "Sports", emojis: ["🏀", "⚽️", "🏈", "⚾️", "🎾"], color: Color.red, numberOfPairsOfCards: 3),
-        EmojiTheme(name: "Random", emojis: [randomEmoji(), randomEmoji(), randomEmoji(), randomEmoji(), randomEmoji()], color: Color.blue, numberOfPairsOfCards: 3)
+    
+    static var emojiThemes = [
+        EmojiTheme(name: "Animals", emojis: ["🦉", "🦆", "🦘", "🐿", "🦔", "🐇"], color: Color.purple, numberOfPairsOfCards: 6),
+        EmojiTheme(name: "Breads", emojis: ["🥐", "🍞", "🥖", "🧇", "🥯", "🥞"], color: Color.green, numberOfPairsOfCards: 6),
+        EmojiTheme(name: "Faces", emojis: ["😀", "😉", "😇", "😡", "😜", "🥶"], color: Color.yellow, numberOfPairsOfCards: 6),
+        EmojiTheme(name: "Fruits", emojis: ["🍓", "🍐", "🍊", "🍑", "🥝", "🍍"], color: Color.orange, numberOfPairsOfCards: 6),
+        EmojiTheme(name: "Sports", emojis: ["🏀", "⚽️", "🏈", "⚾️", "🎾", "🏐"], color: Color.red, numberOfPairsOfCards: 6),
+        EmojiTheme(name: "Random", emojis: [], color: Color.gray, numberOfPairsOfCards: 6)
     ]
     
-    private static func randomEmoji()->String{
-            let emojiStart = 0x1F601
-            let ascii = emojiStart + Int(arc4random_uniform(UInt32(500)))
-            let emoji = UnicodeScalar(ascii)?.description
-            return emoji ?? "x"
+    static var additonalColors = [
+        Color.pink,
+        Color.blue,
+        Color.black,
+        Color.gray
+    ]
+    
+    private static func randomEmojiTheme() -> EmojiTheme {
+        let randomIndexEmojis = Int.random(in:0...EmojiConcentrationGame.emojiThemes.count - 2)
+        let randomIndexNumberOfPairs = Int.random(in:2...6)
+        let randomIndexColor = Int.random(in:0...EmojiConcentrationGame.additonalColors.count - 1)
+        return EmojiTheme(name: "Random", emojis: EmojiConcentrationGame.emojiThemes[randomIndexEmojis].emojis, color: EmojiConcentrationGame.additonalColors[randomIndexColor], numberOfPairsOfCards: randomIndexNumberOfPairs)
     }
     
-    private static func createGame() -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: emojis[EmojiConcentrationGame.indexOfTheme].numberOfPairsOfCards) {
+    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
+        ConcentrationGame<String>(numberOfPairsOfCards: emojiThemes[indexOfTheme].numberOfPairsOfCards) {
             index in
-            emojis[EmojiConcentrationGame.indexOfTheme].emojis[index]
+            emojiThemes[indexOfTheme].emojis[index]
         }
     }
     
@@ -73,14 +82,25 @@ class EmojiConcentrationGame: ObservableObject {
         return totalScore
     }
     
+    var userDefault: UserDefaults {
+        game.defaults
+    }
+    
     // MARK: - Intents
     
-    func choose(_ card: ConcentrationGame<String>.Card) {
-        game.choose(card)
+    func choose(_ card: ConcentrationGame<String>.Card, gameType: String = "emoji", gameTheme: String, score: String) {
+        game.choose(card, gameType, gameTheme, score)
     }
     
     func resetCards() {
-        game = EmojiConcentrationGame.createGame()
+        EmojiConcentrationGame.emojiThemes[EmojiConcentrationGame.emojiThemes.count - 1] = EmojiConcentrationGame.randomEmojiTheme()
+        game = EmojiConcentrationGame.createGame(indexOfTheme)
+    }
+    
+    func setHighScore(gameHighScore: Int) {
+//        if(EmojiConcentrationGame.emojiHighScore < gameHighScore) {
+//            EmojiConcentrationGame.emojiHighScore = gameHighScore
+//        }
     }
     
 }

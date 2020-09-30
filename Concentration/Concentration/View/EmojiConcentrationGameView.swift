@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmojiConcentrationGameView: View {
     @ObservedObject var emojiGame: EmojiConcentrationGame
+
     var cardColor: Color = Color.black
     
     private func columns(for size: CGSize) -> [GridItem] {
@@ -47,7 +48,7 @@ struct EmojiConcentrationGameView: View {
                                 ))
                                 .onTapGesture {
                                     withAnimation(.linear(duration: 0.5)) {
-                                        emojiGame.choose(card)
+                                        emojiGame.choose(card, gameType: "emoji", gameTheme: "\(EmojiConcentrationGame.emojiThemes[emojiGame.indexOfTheme].name)", score: "\(emojiGame.score)")
                                     }
                             }
                         }
