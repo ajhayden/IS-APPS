@@ -28,8 +28,8 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = cardContentFactory(pairIndex)
 
-            cards.append(Card(content: content, id: pairIndex * 2))
-            cards.append(Card(content: content, id: pairIndex * 2 + 1))
+            cards.append(Card(content: content))
+            cards.append(Card(content: content))
         }
 
         cards.shuffle()
@@ -59,8 +59,8 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
         
         if(cardsMatched == cards.count) {
             let possibleNewScore: Int = Int(score)! + 2
-            let stringScore: String = defaults.string(forKey: "\(gameType)\(gameTheme)HighScore") ?? "Unplayed"
-            if(stringScore != "Unplayed") {
+            let stringScore: String = defaults.string(forKey: "\(gameType)\(gameTheme)HighScore") ?? "Never Played"
+            if(stringScore != "Never Played") {
                 let oldScore: Int = Int(stringScore)!
                 if(possibleNewScore > oldScore) {
                     defaults.set(possibleNewScore, forKey: "\(gameType)\(gameTheme)HighScore")
@@ -92,7 +92,7 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
         var mismatchedCount = 0
         var viewedCount = 0
         var content: CardContent
-        var id: Int
+        var id = UUID()
         
         var score: Int {
             if isMatched {

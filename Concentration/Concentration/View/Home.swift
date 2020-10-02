@@ -7,68 +7,80 @@
 
 import SwiftUI
 
+struct MenuItem: Identifiable {
+    var id = UUID()
+    var name: String
+    var color: Color
+}
+
+let menuItems = [
+    MenuItem(name: "Emoji Mojo", color: .purple),
+    MenuItem(name: "Temple Match", color: .green),
+    MenuItem(name: "Shape Scape", color: .blue),
+    MenuItem(name: "Basketball Bounce", color: .orange),
+]
+
+let menuItems2 = [
+    MenuItem(name: "High Scores", color: .gray),
+    MenuItem(name: "Settings", color: .gray)
+]
+
+@ViewBuilder
+private func viewBuilder(viewType: String) -> some View {
+    if viewType == "Emoji Mojo" {
+        EmojiGameOptionsView()
+    }
+    else if viewType == "Temple Match" {
+        TempleGameOptionsView()
+    }
+    else if viewType == "Shape Scape" {
+        ShapeGameOptionsView()
+    }
+    else if viewType == "Basketball Bounce" {
+        EmojiGameOptionsView()
+    }
+    else if viewType == "High Scores" {
+        ScoresView(highScoreViewModel: HighScoreViewModel())
+    }
+    else if viewType == "Settings" {
+        SettingsView()
+    } else {
+        EmojiGameOptionsView()
+    }
+}
+
 struct Home: View {
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Concentration Games")
-                    .bold()
-                    .foregroundColor(Color.blue)
-                    .font(.system(size: 30))
-                    .padding()
-                NavigationLink(destination: EmojiGameOptionsView()) {
-                    Text("Emoji Mojo")
+            NavigationView {
+                VStack {
+                    Text("Concentration Attack")
+                        .bold()
+                        .foregroundColor(Color.gray)
+                        .font(.system(size: 30))
+                        .padding(.bottom, 30)
+                    ForEach(menuItems) { item in
+                        NavigationLink(item.name, destination: viewBuilder(viewType: item.name))
+                            .foregroundColor(Color.white)
+                            .frame(width: 200, height: 50)
+                            .background(item.color)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .font(.system(size: 19))
+                            .padding(.bottom, 15)
+                    }
+                    HStack {
+                        ForEach(menuItems2) { item in
+                            NavigationLink(item.name, destination: viewBuilder(viewType: item.name))
+                                .foregroundColor(Color.white)
+                                .frame(width: 95, height: 50)
+                                .multilineTextAlignment(.center)
+                                .background(Color.gray)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .font(.system(size: 19))
+                    }
                 }
-                .foregroundColor(Color.white)
-                .frame(width: 200, height: 60)
-                .background(Color.purple)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .font(.system(size: 19))
-                .padding()
-
-                NavigationLink(destination: TempleGameOptionsView()) {
-                    Text("Temple Match")
-                }
-                .foregroundColor(Color.white)
-                .frame(width: 200, height: 60)
-                .background(Color.green)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .font(.system(size: 19))
-                .padding()
-                
-                NavigationLink(destination: EmojiGameOptionsView()) {
-                    Text("Shape Scape")
-                }
-                .foregroundColor(Color.white)
-                .frame(width: 200, height: 60)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .font(.system(size: 19))
-                .padding()
-                
-                NavigationLink(destination: EmojiGameOptionsView()) {
-                    Text("Basketball Bounce")
-                }
-                .foregroundColor(Color.white)
-                .frame(width: 200, height: 60)
-                .background(Color.orange)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .font(.system(size: 19))
-                .padding()
-                
-                NavigationLink(destination: GameScores(highScoreViewModel: HighScoreViewModel())) {
-                    Text("High Scores")
-                }
-                .foregroundColor(Color.white)
-                .frame(width: 150, height: 60)
-                .background(Color.gray)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .font(.system(size: 19))
-                .padding()
             }
         }
     }
-        
 }
 
 struct Home_Previews: PreviewProvider {

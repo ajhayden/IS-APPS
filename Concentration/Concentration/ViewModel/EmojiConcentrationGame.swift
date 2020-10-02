@@ -23,6 +23,7 @@ class EmojiTheme: Identifiable {
 
 class EmojiConcentrationGame: ObservableObject {
     @Published private var game: ConcentrationGame<String>
+    @Published private var isVisable = false
     
     var indexOfTheme: Int
     
@@ -51,8 +52,7 @@ class EmojiConcentrationGame: ObservableObject {
     private static func randomEmojiTheme() -> EmojiTheme {
         let randomIndexEmojis = Int.random(in:0...EmojiConcentrationGame.emojiThemes.count - 2)
         let randomIndexNumberOfPairs = Int.random(in:2...6)
-        let randomIndexColor = Int.random(in:0...EmojiConcentrationGame.additonalColors.count - 1)
-        return EmojiTheme(name: "Random", emojis: EmojiConcentrationGame.emojiThemes[randomIndexEmojis].emojis, color: EmojiConcentrationGame.additonalColors[randomIndexColor], numberOfPairsOfCards: randomIndexNumberOfPairs)
+        return EmojiTheme(name: "Random", emojis: EmojiConcentrationGame.emojiThemes[randomIndexEmojis].emojis, color: EmojiConcentrationGame.additonalColors.randomElement() ?? .red, numberOfPairsOfCards: randomIndexNumberOfPairs)
     }
     
     private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
@@ -65,7 +65,11 @@ class EmojiConcentrationGame: ObservableObject {
     // MARK: - Access to model
     
     var cards: Array<ConcentrationGame<String>.Card> {
-        game.cards
+        if isVisable {
+            return game.cards
+        } else {
+            return []
+        }
     }
     
     var score: Int {
@@ -82,6 +86,10 @@ class EmojiConcentrationGame: ObservableObject {
         return totalScore
     }
     
+    var cardColor: Color {
+        EmojiConcentrationGame.emojiThemes[indexOfTheme].color
+    }
+    
     var userDefault: UserDefaults {
         game.defaults
     }
@@ -90,6 +98,10 @@ class EmojiConcentrationGame: ObservableObject {
     
     func choose(_ card: ConcentrationGame<String>.Card, gameType: String = "emoji", gameTheme: String, score: String) {
         game.choose(card, gameType, gameTheme, score)
+    }
+    
+    func dealCards() {
+        isVisable = true
     }
     
     func resetCards() {

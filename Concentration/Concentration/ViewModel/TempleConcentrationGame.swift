@@ -9,11 +9,11 @@ import SwiftUI
 
 class TempleTheme: Identifiable {
     var name: String
-    var temples: [Image]
+    var temples: [String]
     var color: Color
     var numberOfPairsOfCards: Int
     
-    init(name: String, temples: [Image], color: Color, numberOfPairsOfCards: Int) {
+    init(name: String, temples: [String], color: Color, numberOfPairsOfCards: Int) {
         self.name = name
         self.temples = temples
         self.color = color
@@ -22,9 +22,8 @@ class TempleTheme: Identifiable {
 }
 
 class TempleConcentrationGame: ObservableObject {
-    @Published private var game: ConcentrationGame<Image>
-
-    static var templeHighScore = 0
+    @Published private var game: ConcentrationGame<String>
+    @Published private var isVisable = false
     
     var indexOfTheme: Int
     
@@ -33,23 +32,27 @@ class TempleConcentrationGame: ObservableObject {
         game = TempleConcentrationGame.createGame(indexOfTheme)
     }
 
-    static var temples = [
-        TempleTheme(name: "Utah Temples", temples: [Image("brigham_city_utah"), Image("cedar_city_utah"), Image("draper_utah"), Image("jordan_river_utah"), Image("logan_utah"), Image("manti_utah"), Image("oquirrh_mountain_utah"), Image("provo_city_center_utah"), Image("salt_lake_utah")], color: Color.green, numberOfPairsOfCards: 9),
-        TempleTheme(name: "European Temples", temples: [Image("bern_switzerland_europe"), Image("copenhangen_denmark_europe"), Image("freiberg_germany_europe"), Image("helsinki_finland_europe"), Image("kyiv_ukraine_europe"), Image("londan_england_europe"), Image("madrid_spain_europe"), Image("paris_france_europe"), Image("rome_italy_europe")], color: Color.blue, numberOfPairsOfCards: 9),
-        TempleTheme(name: "South American Temples", temples: [Image("asuncion_paraguay_sa"), Image("barranquilla_colombia_sa"), Image("buenos_aires_argentina_sa"), Image("cochabamba_chile_sa"), Image("cocepcion_chile_sa"), Image("guayaquil_ecuador_sa"), Image("lima_peru_sa"), Image("rio_de_janeiro_sa"), Image("trujillo_peru_sa")], color: Color.yellow, numberOfPairsOfCards: 9)
+    static var templeThemes = [
+        TempleTheme(name: "Utah Temples", temples: ["brigham_city_utah", "cedar_city_utah", "draper_utah", "jordan_river_utah", "logan_utah", "manti_utah", "oquirrh_mountain_utah", "provo_city_center_utah", "salt_lake_utah"], color: Color.green, numberOfPairsOfCards: 9),
+        TempleTheme(name: "European Temples", temples: ["bern_switzerland_europe", "copenhagen_denmark_europe", "freiberg_germany_europe", "helsinki_finland_europe", "kyiv_ukraine_europe", "london_england_europe", "madrid_spain_europe", "paris_france_europe", "rome_italy_europe"], color: Color.blue, numberOfPairsOfCards: 9),
+        TempleTheme(name: "South American Temples", temples: ["asuncion_paraguay_sa", "barranquilla_colombia_sa", "buenos_aires_argentina_sa", "cochabamba_bolivia_sa", "concepcion_chile_sa", "guayaquil_ecuador_sa", "lima_peru_sa", "rio_de_janeiro_sa", "trujillo_peru_sa"], color: Color.yellow, numberOfPairsOfCards: 9)
     ]
     
-    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<Image> {
-        ConcentrationGame<Image>(numberOfPairsOfCards: temples[indexOfTheme].numberOfPairsOfCards) {
+    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
+        ConcentrationGame<String>(numberOfPairsOfCards: templeThemes[indexOfTheme].numberOfPairsOfCards) {
             index in
-            temples[indexOfTheme].temples[index]
+            templeThemes[indexOfTheme].temples[index]
         }
     }
     
     // MARK: - Access to model
     
-    var cards: Array<ConcentrationGame<Image>.Card> {
-        game.cards
+    var cards: Array<ConcentrationGame<String>.Card> {
+        if isVisable {
+            return game.cards
+        } else {
+            return []
+        }
     }
     
     var score: Int {
@@ -66,20 +69,22 @@ class TempleConcentrationGame: ObservableObject {
         return totalScore
     }
     
+    var userDefault: UserDefaults {
+        game.defaults
+    }
+    
     // MARK: - Intents
     
-    func choose(_ card: ConcentrationGame<Image>.Card, gameType: String = "emoji", gameTheme: String, score: String) {
+    func choose(_ card: ConcentrationGame<String>.Card, gameType: String = "temple", gameTheme: String, score: String) {
         game.choose(card, gameType, gameTheme, score)
+    }
+    
+    func dealCards() {
+        isVisable = true
     }
     
     func resetCards() {
         game = TempleConcentrationGame.createGame(indexOfTheme)
-    }
-    
-    func setHighScore(gameHighScore: Int) {
-//        if(EmojiConcentrationGame.emojiHighScore < gameHighScore) {
-//            EmojiConcentrationGame.emojiHighScore = gameHighScore
-//        }
     }
     
 }

@@ -66,7 +66,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: ConcentrationGame<String>.Card(isFaceUp: true, content: "🥝", id: 1))
+        CardView(card: ConcentrationGame<String>.Card(isFaceUp: true, content: "🥝"))
             .padding(50)
     }
 }

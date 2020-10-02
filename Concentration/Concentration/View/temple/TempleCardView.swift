@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ImageCardView: View {
-    var card: ConcentrationGame<Image>.Card
+struct TempleCardView: View {
+    var card: ConcentrationGame<String>.Card
     
     @State private var animatedBonusRemaining = 0.0
     
@@ -30,7 +30,9 @@ struct ImageCardView: View {
                     .padding()
                     .transition(.identity)
                     
-                    Text(card.content)
+                    Image(card.content)
+                        .resizable()
+                        .aspectRatio(1.2, contentMode: .fit)
                         .font(systemFont(for: geometry.size))
                         .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
                         .animation(card.isMatched ? Animation.linear(duration: 1)
@@ -60,13 +62,13 @@ struct ImageCardView: View {
     
     // MARK: - Drawing constants
     
-    private let cardAspectRatio: CGFloat = 9/10
+    private let cardAspectRatio: CGFloat = 1.5
     private let fontScaleFactor: CGFloat = 0.70
 }
 
-struct ImageCardView_Previews: PreviewProvider {
+struct TempleCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageCardView(card: ConcentrationGame<Image>.Card(isFaceUp: true, content: Image("rome_italy_europe"), id: 1))
-            .padding(50)
+        TempleCardView(card: ConcentrationGame<String>.Card(isFaceUp: true, content: "rome_italy_europe"))
+            .padding(70)
     }
 }

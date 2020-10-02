@@ -1,14 +1,14 @@
 //
-//  EmojiConcentrationGameView.swift
+//  ShapeConcentrationGameView.swift
 //  Concentration
 //
-//  Created by Student on 9/9/20.
+//  Created by Student on 10/1/20.
 //
 
 import SwiftUI
 
-struct EmojiConcentrationGameView: View {
-    @ObservedObject var emojiGame: EmojiConcentrationGame
+struct ShapeConcentrationGameView: View {
+    @ObservedObject var shapeGame: ShapeConcentrationGame
 
     var cardColor: Color = Color.black
     
@@ -20,14 +20,21 @@ struct EmojiConcentrationGameView: View {
         ScrollView {
             VStack {
                 HStack {
-                    Text("Score: \(emojiGame.score)")
-                        .bold()
-                        .foregroundColor(cardColor)
-                        .font(.system(size: 20))
+                    VStack {
+                        Text("Score: \(shapeGame.score)")
+                            .bold()
+                            .foregroundColor(cardColor)
+                            .font(.system(size: 20))
+                        Text("High Score: \(shapeGame.userDefault.string(forKey: "shape\(ShapeConcentrationGame.shapeThemes[shapeGame.indexOfTheme].name)HighScore") ?? "Never Played")")
+                            .bold()
+                            .foregroundColor(.black)
+                            .font(.system(size: 10))
+                    }
+                    
                     Spacer()
                     Button("New Game") {
                         withAnimation(.easeInOut) {
-                            emojiGame.resetCards()
+                            shapeGame.resetCards()
                         }
                     }
                     .foregroundColor(Color.white)
@@ -41,15 +48,22 @@ struct EmojiConcentrationGameView: View {
                 .padding(.trailing, 40)
                 GeometryReader { geometry in
                     LazyVGrid(columns: columns(for: geometry.size) ) {
-                        ForEach(emojiGame.cards) { card in
-                            CardView(card: card)
+                        ForEach(shapeGame.cards) { card in
+                            ShapeView(card: card)
+                                .onTapGesture {
+                                    withAnimation(.linear(duration: 0.5)) {
+                                       shapeGame.choose(card, gameType: "shape", gameTheme: "\(ShapeConcentrationGame.shapeThemes[shapeGame.indexOfTheme].name)", score: "\(shapeGame.score)")
+                                    }
+                                }
                                 .transition(AnyTransition.offset(
                                     randomLocationOffScreen(for: geometry.size)
                                 ))
-                                .onTapGesture {
-                                    withAnimation(.linear(duration: 0.5)) {
-                                        emojiGame.choose(card, gameType: "emoji", gameTheme: "\(EmojiConcentrationGame.emojiThemes[emojiGame.indexOfTheme].name)", score: "\(emojiGame.score)")
-                                    }
+                        }
+                    }
+                    .onAppear() {
+                        DispatchQueue.main.async {
+                            withAnimation(Animation.easeInOut(duration: 1.5)) {
+                                shapeGame.dealCards()
                             }
                         }
                     }
@@ -79,8 +93,8 @@ struct EmojiConcentrationGameView: View {
     private let desiredCardWidth: CGFloat = 100
 }
 
-struct EmojiConcentrationGameView_Previews: PreviewProvider {
+struct ShapeConcentrationGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: 0))
+        ShapeConcentrationGameView(shapeGame: ShapeConcentrationGame(indexOfTheme: 0))
     }
 }

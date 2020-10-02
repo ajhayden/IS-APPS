@@ -19,10 +19,16 @@ struct TempleConcentrationGameView: View {
         ScrollView {
             VStack {
                 HStack {
-                    Text("Score: \(templeGame.score)")
-                        .bold()
-                        .foregroundColor(cardColor)
-                        .font(.system(size: 20))
+                    VStack {
+                        Text("Score: \(templeGame.score)")
+                            .bold()
+                            .foregroundColor(cardColor)
+                            .font(.system(size: 20))
+                        Text("High Score: \(templeGame.userDefault.string(forKey: "temple\(TempleConcentrationGame.templeThemes[templeGame.indexOfTheme].name)HighScore") ?? "Never Played")")
+                            .bold()
+                            .foregroundColor(.black)
+                            .font(.system(size: 10))
+                    }
                     Spacer()
                     Button("New Game") {
                         withAnimation(.easeInOut) {
@@ -41,14 +47,21 @@ struct TempleConcentrationGameView: View {
                 GeometryReader { geometry in
                     LazyVGrid(columns: columns(for: geometry.size) ) {
                         ForEach(templeGame.cards) { card in
-                            ImageCardView(card: card)
+                            TempleCardView(card: card)
+                                .onTapGesture {
+                                    withAnimation(.linear(duration: 0.5)) {
+                                        templeGame.choose(card, gameType: "temple", gameTheme: "\(TempleConcentrationGame.templeThemes[templeGame.indexOfTheme].name)", score: "\(templeGame.score)")
+                                    }
+                                }
                                 .transition(AnyTransition.offset(
                                     randomLocationOffScreen(for: geometry.size)
                                 ))
-                                .onTapGesture {
-                                    withAnimation(.linear(duration: 0.5)) {
-//                                        templeGame.choose(card, gameType: "temple", gameTheme: "\(EmojiConcentrationGame.templeThemes[templeGame.indexOfTheme].name)")
-                                    }
+                        }
+                    }
+                    .onAppear() {
+                        DispatchQueue.main.async {
+                            withAnimation(Animation.easeInOut(duration: 1.5)) {
+                                templeGame.dealCards()
                             }
                         }
                     }

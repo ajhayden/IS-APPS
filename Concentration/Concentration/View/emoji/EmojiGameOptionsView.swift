@@ -17,20 +17,19 @@ struct EmojiGameOptionsView: View {
                 .bold()
                 .foregroundColor(Color.purple)
                 .font(.system(size: 30))
-                .padding()
+                .padding(.bottom, 30)
             
             ForEach(emojiThemes.indices) { index in
-                NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: index), cardColor: emojiThemes[index].color)) {
+                NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: index))) {
                     Text("\(emojiThemes[index].name)")
                 }
                 .foregroundColor(Color.white)
-                .frame(width: 200, height: 60)
+                .frame(width: 200, height: 50)
                 .background(emojiThemes[index].color)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .font(.system(size: 19))
-                .padding()
+                .padding(.bottom)
             }
-
         }
     }
 }
