@@ -93,6 +93,9 @@ struct ScoresView: View {
                         Text("College: \(highScoreViewModel.userDefault.string(forKey: "basketballCollegeHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
+                        Text("The Kids: \(highScoreViewModel.userDefault.string(forKey: "basketballThe KidsHighScore") ?? "Never Played")")
+                            .bold()
+                            .foregroundColor(Color.black)
                     }
                 }
                 

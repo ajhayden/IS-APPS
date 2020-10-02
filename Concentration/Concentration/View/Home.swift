@@ -37,7 +37,7 @@ private func viewBuilder(viewType: String) -> some View {
         ShapeGameOptionsView()
     }
     else if viewType == "Basketball Bounce" {
-        EmojiGameOptionsView()
+        BasketballGameOptionsView()
     }
     else if viewType == "High Scores" {
         ScoresView(highScoreViewModel: HighScoreViewModel())

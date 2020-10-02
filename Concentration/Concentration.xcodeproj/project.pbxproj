@@ -38,6 +38,10 @@
 		3FC531E62526CB7800D6F42E /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531E52526CB7800D6F42E /* Hexagon.swift */; };
 		3FC531E82526CC3300D6F42E /* HexagonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531E72526CC3300D6F42E /* HexagonParameters.swift */; };
 		3FC531EA2526D24900D6F42E /* SquiggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531E92526D24900D6F42E /* SquiggleView.swift */; };
+		3FC531ED2526E01700D6F42E /* BasketballConcentrationGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531EC2526E01700D6F42E /* BasketballConcentrationGameView.swift */; };
+		3FC531EF2526E03800D6F42E /* BasketballGameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531EE2526E03800D6F42E /* BasketballGameOptionsView.swift */; };
+		3FC531F12526E05000D6F42E /* BasketballCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531F02526E05000D6F42E /* BasketballCardView.swift */; };
+		3FC531F32526E06B00D6F42E /* BasketballConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531F22526E06B00D6F42E /* BasketballConcentrationGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +99,10 @@
 		3FC531E52526CB7800D6F42E /* Hexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagon.swift; sourceTree = "<group>"; };
 		3FC531E72526CC3300D6F42E /* HexagonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonParameters.swift; sourceTree = "<group>"; };
 		3FC531E92526D24900D6F42E /* SquiggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquiggleView.swift; sourceTree = "<group>"; };
+		3FC531EC2526E01700D6F42E /* BasketballConcentrationGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballConcentrationGameView.swift; sourceTree = "<group>"; };
+		3FC531EE2526E03800D6F42E /* BasketballGameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballGameOptionsView.swift; sourceTree = "<group>"; };
+		3FC531F02526E05000D6F42E /* BasketballCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballCardView.swift; sourceTree = "<group>"; };
+		3FC531F22526E06B00D6F42E /* BasketballConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballConcentrationGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +216,7 @@
 				3F98A7F4251C1BA300692280 /* ScoresView.swift */,
 				3FC531D825265A1900D6F42E /* SettingsView.swift */,
 				3FC531DC2526739600D6F42E /* shape */,
+				3FC531EB2526DFE500D6F42E /* basketball */,
 				3FC531DA2526733F00D6F42E /* emoji */,
 				3FC531DB2526736200D6F42E /* temple */,
 			);
@@ -218,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */,
+				3FC531F22526E06B00D6F42E /* BasketballConcentrationGame.swift */,
 				3FC531DF252676B600D6F42E /* ShapeConcentrationGame.swift */,
 				3F8259EA252283CC00F23CF8 /* TempleConcentrationGame.swift */,
 				3F8259FB2524560600F23CF8 /* HighScoreViewModel.swift */,
@@ -267,6 +277,16 @@
 				3FC531E92526D24900D6F42E /* SquiggleView.swift */,
 			);
 			path = shape;
+			sourceTree = "<group>";
+		};
+		3FC531EB2526DFE500D6F42E /* basketball */ = {
+			isa = PBXGroup;
+			children = (
+				3FC531EC2526E01700D6F42E /* BasketballConcentrationGameView.swift */,
+				3FC531EE2526E03800D6F42E /* BasketballGameOptionsView.swift */,
+				3FC531F02526E05000D6F42E /* BasketballCardView.swift */,
+			);
+			path = basketball;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,13 +419,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F98A7F5251C1BA300692280 /* ScoresView.swift in Sources */,
+				3FC531F12526E05000D6F42E /* BasketballCardView.swift in Sources */,
 				3F8259F6252429D300F23CF8 /* KeyStore.swift in Sources */,
 				3F98A7F3251C097B00692280 /* EmojiGameOptionsView.swift in Sources */,
 				3F8259EF252289B700F23CF8 /* TempleConcentrationGameView.swift in Sources */,
 				3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */,
+				3FC531ED2526E01700D6F42E /* BasketballConcentrationGameView.swift in Sources */,
 				3FC531D925265A1900D6F42E /* SettingsView.swift in Sources */,
 				3FC531E42526862A00D6F42E /* ShapeView.swift in Sources */,
 				3FC531E225267E7000D6F42E /* ShapeConcentrationGameView.swift in Sources */,
+				3FC531F32526E06B00D6F42E /* BasketballConcentrationGame.swift in Sources */,
 				3FA66DF12509B6A200DF70B2 /* ConcentrationGame.swift in Sources */,
 				3F8259ED2522876700F23CF8 /* TempleGameOptionsView.swift in Sources */,
 				3F8259F125228A4800F23CF8 /* TempleCardView.swift in Sources */,
@@ -421,6 +444,7 @@
 				3FC531DE252675FD00D6F42E /* ShapeGameOptionsView.swift in Sources */,
 				3F307607251294D0006863C8 /* Array+Only.swift in Sources */,
 				3FC531E82526CC3300D6F42E /* HexagonParameters.swift in Sources */,
+				3FC531EF2526E03800D6F42E /* BasketballGameOptionsView.swift in Sources */,
 				3F8259FC2524560600F23CF8 /* HighScoreViewModel.swift in Sources */,
 				3F8259F325237F6900F23CF8 /* SoundPlayer.swift in Sources */,
 				3FC531EA2526D24900D6F42E /* SquiggleView.swift in Sources */,
