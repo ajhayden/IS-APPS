@@ -121,24 +121,3 @@ struct ScoresView_Previews: PreviewProvider {
         ScoresView(highScoreViewModel: HighScoreViewModel())
     }
 }
-
-
-// Notes from clas. Image resizable() and then aspectRatio(contentMode: .fit) also .scale to fill
-// Make the job easy. Cut all images to be exactly that same size. Cut the aspect ratio for exactly what you want for the images.
-//func getHighScore() -> String {
-//    let highScore = UserDefaults.standard.integer(forKey: "highScore")
-//
-//    if highScore > 0 {
-//        return "\(highScore)"
-//    }
-//
-//    return "Never Played"
-//}
-
-// He put UserDefaults.standard.setValue(5, forKey: "highScore") in the Preview provider
-
-// He has a settings to input pairs of cards and sound enabled that just saves to userDefaults
-// You could also give them an input just before they go into the next theme
-// You need an overall highscore. Anytime you update the score compare it against the other score
-// You could use a progress bar at the bottom of the page
-// You could put the pie on top of the image

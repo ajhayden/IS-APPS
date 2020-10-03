@@ -16,7 +16,7 @@ struct BasketballSettingsView: View {
                     Form {
                         Section(header: Text("Game Settings")) {
                             Slider(value: $current_num, in: 1...9, step: 1)
-                            Text("New value: \(Int(current_num))")
+                            Text("Pairs of Cards: \(Int(current_num))")
                             Button("Save") {
                                 withAnimation(.easeInOut(duration: 0.5)) {
                                     game.resetCardsBySettings(newNumberOfPairsOfCards: Int(current_num))

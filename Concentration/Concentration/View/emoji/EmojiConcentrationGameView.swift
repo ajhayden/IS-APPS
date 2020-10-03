@@ -108,31 +108,3 @@ struct EmojiConcentrationGameView_Previews: PreviewProvider {
         EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: 0))
     }
 }
-
-//struct ProgressShapeView: View {
-//    var value: Double
-//    var width: CGFloat
-//
-//    var body: some View {
-//        ZStack(alignment: .leading) {
-//            Capsule()
-//                .frame(width: 300, height: 15)
-//                .foregroundColor(Color(white:0, opacity: 0.1)
-//            Capsule()
-//                .frame(width: width * CGFloat(value), height: 5)
-//                .foregroundColor(.blue)
-//
-//        }
-//    }
-//}
-//
-//struct ProgressShapeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GeometryReader { reader in
-//            VStack(alignment: .leading) {
-//                ProgressShapeView(value: 0, width: reader.size.width)
-//                ProgressShaveView(value: 0.25, width: reader.size.width)
-//            }
-//        }
-//    }
-//}

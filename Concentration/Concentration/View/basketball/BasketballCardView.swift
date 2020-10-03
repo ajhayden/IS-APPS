@@ -17,14 +17,7 @@ struct BasketballCardView: View {
             if card.isFaceUp || !card.isMatched {
                 ZStack {
                     Group {
-                        if card.isConsumingBonusTime {
-                            Pie(startAngle: angle(for: 0), endAngle: angle(for: -animatedBonusRemaining), clockwise: true)
-                                .onAppear() {
-                                    startBonusTimeAnimation()
-                                }
-                        } else {
-                            Pie(startAngle: Angle.degrees(0-90), endAngle: angle(for: -card.bonusRemaining), clockwise: true)
-                        }
+                        
                     }
                     .opacity(0.4)
                     .padding()

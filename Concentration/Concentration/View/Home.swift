@@ -51,7 +51,8 @@ private func viewBuilder(viewType: String) -> some View {
 
 struct Home: View {
     var body: some View {
-            NavigationView {
+        NavigationView {
+            ScrollView {
                 VStack {
                     Text("Concentration Attack")
                         .bold()
@@ -76,12 +77,11 @@ struct Home: View {
                                 .background(Color.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .font(.system(size: 13))
+                        }
                     }
                 }
             }
-            .padding(0)
         }
-        .padding(0)
     }
 }
 

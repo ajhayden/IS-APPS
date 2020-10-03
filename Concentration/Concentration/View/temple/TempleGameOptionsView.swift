@@ -12,26 +12,28 @@ struct TempleGameOptionsView: View {
     var templeThemes = TempleConcentrationGame.templeThemes
 
     var body: some View {
-        VStack {
-            Text("Temple Match")
-                .bold()
-                .foregroundColor(Color.gray)
-                .font(.system(size: 30))
-                .padding(.bottom, 30)
-            
-            ForEach(templeThemes.indices) { index in
-                NavigationLink(destination: TempleConcentrationGameView(templeGame: TempleConcentrationGame(indexOfTheme: index))) {
-                    Text("\(templeThemes[index].name)")
+        ScrollView {
+            VStack {
+                Text("Temple Match")
+                    .bold()
+                    .foregroundColor(Color.gray)
+                    .font(.system(size: 30))
+                    .padding(.bottom, 30)
+                
+                ForEach(templeThemes.indices) { index in
+                    NavigationLink(destination: TempleConcentrationGameView(templeGame: TempleConcentrationGame(indexOfTheme: index))) {
+                        Text("\(templeThemes[index].name)")
+                    }
+                    .foregroundColor(templeThemes[index].color)
+                    .frame(width: 200, height: 50)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .font(.system(size: 19))
+                    .padding(.bottom)
+                    .multilineTextAlignment(.center)
                 }
-                .foregroundColor(templeThemes[index].color)
-                .frame(width: 200, height: 50)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .font(.system(size: 19))
-                .padding(.bottom)
-                .multilineTextAlignment(.center)
-            }
 
+            }
         }
     }
 }

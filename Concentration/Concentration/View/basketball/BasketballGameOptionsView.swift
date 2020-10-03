@@ -12,25 +12,27 @@ struct BasketballGameOptionsView: View {
     var basketballThemes = BasketballConcentrationGame.basketballThemes
 
     var body: some View {
-        VStack {
-            Text("Basketball Bounce")
-                .bold()
-                .foregroundColor(Color.gray)
-                .font(.system(size: 30))
-                .padding(.bottom, 30)
-            
-            ForEach(basketballThemes.indices) { index in
-                NavigationLink(destination: BasketballConcentrationGameView(basketballGame: BasketballConcentrationGame(indexOfTheme: index))) {
-                    Text("\(basketballThemes[index].name)")
+        ScrollView {
+            VStack {
+                Text("Basketball Bounce")
+                    .bold()
+                    .foregroundColor(Color.gray)
+                    .font(.system(size: 30))
+                    .padding(.bottom, 30)
+                
+                ForEach(basketballThemes.indices) { index in
+                    NavigationLink(destination: BasketballConcentrationGameView(basketballGame: BasketballConcentrationGame(indexOfTheme: index))) {
+                        Text("\(basketballThemes[index].name)")
+                    }
+                    .foregroundColor(basketballThemes[index].color)
+                    .frame(width: 200, height: 50)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .font(.system(size: 19))
+                    .padding(.bottom)
                 }
-                .foregroundColor(basketballThemes[index].color)
-                .frame(width: 200, height: 50)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .font(.system(size: 19))
-                .padding(.bottom)
-            }
 
+            }
         }
     }
 }

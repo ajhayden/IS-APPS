@@ -5,44 +5,50 @@
 //  Created by Student on 9/28/20.
 //
 
+
+
 import SwiftUI
 
 struct TempleCardView: View {
     var card: ConcentrationGame<String>.Card
     
     @State private var animatedBonusRemaining = 0.0
+    @State private var animatedNumber = 1
     
     var body: some View {
         GeometryReader { geometry in
             if card.isFaceUp || !card.isMatched {
                 ZStack {
-                    Group {
-                        if card.isConsumingBonusTime {
-                            Pie(startAngle: angle(for: 0), endAngle: angle(for: -animatedBonusRemaining), clockwise: true)
-                                .onAppear() {
-                                    startBonusTimeAnimation()
-                                }
-                        } else {
-                            Pie(startAngle: Angle.degrees(0-90), endAngle: angle(for: -card.bonusRemaining), clockwise: true)
-                        }
-                    }
-                    .opacity(0.4)
-                    .padding()
-                    .transition(.identity)
-                    
                     Image(card.content)
                         .resizable()
                         .aspectRatio(1.2, contentMode: .fit)
                         .font(systemFont(for: geometry.size))
-                        .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+                        .hueRotation(Angle.degrees(card.isMatched ? 360 : 0))
                         .animation(card.isMatched ? Animation.linear(duration: 1)
                                     .repeatForever(autoreverses: false) : .default)
+                    Group {
+                        if card.isConsumingBonusTime {
+                            Pie(startAngle: angle(for: 0), endAngle: angle(for: -animatedBonusRemaining), clockwise: false)
+                                .onAppear() {
+                                    startBonusTimeAnimation()
+                                }
+                        }
+                    }
+                    .opacity(0.5)
+                    .padding(20)
+                    .transition(.identity)
+                    
+                    
                 }
                 .cardify(isFaceUp: card.isFaceUp)
                 .transition(.scale)
             }
         }
         .aspectRatio(cardAspectRatio, contentMode: .fit)
+    }
+    
+    private func incrementNumber() -> Int {
+        return 0
     }
     
     private func angle(for degrees: Double) -> Angle {

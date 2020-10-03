@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F307607251294D0006863C8 /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F307606251294D0006863C8 /* Array+Only.swift */; };
+		3F5803562528FB1D00045E8C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5803552528FB1D00045E8C /* Timer.swift */; };
 		3F62BB0B2513B1B30040400D /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62BB0A2513B1B30040400D /* Pie.swift */; };
 		3F62BB0D251978160040400D /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62BB0C251978160040400D /* Cardify.swift */; };
 		3F8259EB252283CC00F23CF8 /* TempleConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8259EA252283CC00F23CF8 /* TempleConcentrationGame.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		3F307606251294D0006863C8 /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
+		3F5803552528FB1D00045E8C /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		3F62BB0A2513B1B30040400D /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		3F62BB0C251978160040400D /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		3F8259EA252283CC00F23CF8 /* TempleConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempleConcentrationGame.swift; sourceTree = "<group>"; };
@@ -220,9 +222,10 @@
 			children = (
 				3F98A7F0251BFB1C00692280 /* Home.swift */,
 				3F62BB0C251978160040400D /* Cardify.swift */,
-				3F62BB0A2513B1B30040400D /* Pie.swift */,
 				3FBBD73F2527F0A00040390B /* SettingsView.swift */,
 				3F98A7F4251C1BA300692280 /* ScoresView.swift */,
+				3F62BB0A2513B1B30040400D /* Pie.swift */,
+				3FBBD73C2527E96F0040390B /* shapeStyles */,
 				3FC531DC2526739600D6F42E /* shape */,
 				3FC531EB2526DFE500D6F42E /* basketball */,
 				3FC531DA2526733F00D6F42E /* emoji */,
@@ -281,6 +284,7 @@
 				3F8259EE252289B700F23CF8 /* TempleConcentrationGameView.swift */,
 				3F8259EC2522876700F23CF8 /* TempleGameOptionsView.swift */,
 				3F8259F025228A4800F23CF8 /* TempleCardView.swift */,
+				3F5803552528FB1D00045E8C /* Timer.swift */,
 				3FBBD7382527E4950040390B /* TempleSettingsView.swift */,
 			);
 			path = temple;
@@ -293,7 +297,6 @@
 				3FBBD73D2527E9A60040390B /* ShapeSettings.swift */,
 				3FC531E125267E7000D6F42E /* ShapeConcentrationGameView.swift */,
 				3FC531E32526862A00D6F42E /* ShapeView.swift */,
-				3FBBD73C2527E96F0040390B /* shapeStyles */,
 			);
 			path = shape;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				3F8259F125228A4800F23CF8 /* TempleCardView.swift in Sources */,
 				3F98A7F1251BFB1C00692280 /* Home.swift in Sources */,
 				3F62BB0B2513B1B30040400D /* Pie.swift in Sources */,
+				3F5803562528FB1D00045E8C /* Timer.swift in Sources */,
 				3FC531E0252676B600D6F42E /* ShapeConcentrationGame.swift in Sources */,
 				3FC531E62526CB7800D6F42E /* Hexagon.swift in Sources */,
 				3F62BB0D251978160040400D /* Cardify.swift in Sources */,
