@@ -37,17 +37,17 @@ struct ShapeConcentrationGameView: View {
                                 shapeGame.resetCards()
                             }
                         }
-                        .foregroundColor(Color.white)
+                        .foregroundColor(shapeGame.cardColor)
                         .frame(width: 110, height: 45)
-                        .background(shapeGame.cardColor)
+                        .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .font(.system(size: 19))
                         .padding(.bottom, 1)
                         
                         NavigationLink("Settings", destination: ShapeSettingsView(game: shapeGame))
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.gray)
                         .frame(width: 90, height: 35)
-                        .background(Color.gray)
+                        .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .font(.system(size: 15))
                     }

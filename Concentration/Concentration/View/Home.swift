@@ -62,7 +62,7 @@ struct Home: View {
                         NavigationLink(item.name, destination: viewBuilder(viewType: item.name))
                             .foregroundColor(item.color)
                             .frame(width: 200, height: 50)
-                            .background(Color.gray)
+                            .background(Color.white)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .font(.system(size: 20))
                             .padding(.bottom, 13)
@@ -70,10 +70,10 @@ struct Home: View {
                     HStack {
                         ForEach(menuItems2) { item in
                             NavigationLink(item.name, destination: viewBuilder(viewType: item.name))
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.gray)
                                 .frame(width: 95, height: 50)
                                 .multilineTextAlignment(.center)
-                                .background(Color.gray)
+                                .background(Color.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .font(.system(size: 13))
                     }

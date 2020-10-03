@@ -36,17 +36,17 @@ struct TempleConcentrationGameView: View {
                                 templeGame.resetCards()
                             }
                         }
-                        .foregroundColor(Color.white)
+                        .foregroundColor(templeGame.cardColor)
                         .frame(width: 110, height: 45)
-                        .background(templeGame.cardColor)
+                        .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .font(.system(size: 19))
                         .padding(.bottom, 1)
                         
                         NavigationLink("Settings", destination: TempleSettingsView(game: templeGame))
-                        .foregroundColor(Color.white)
+                            .foregroundColor(Color.gray)
                         .frame(width: 90, height: 35)
-                        .background(Color.gray)
+                        .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .font(.system(size: 15))
                     }

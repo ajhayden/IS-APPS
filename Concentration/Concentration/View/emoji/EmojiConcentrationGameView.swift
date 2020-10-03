@@ -38,17 +38,17 @@ struct EmojiConcentrationGameView: View {
                                 emojiGame.resetCards()
                             }
                         }
-                        .foregroundColor(Color.white)
+                        .foregroundColor(emojiGame.cardColor)
                         .frame(width: 110, height: 45)
-                        .background(emojiGame.cardColor)
+                        .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .font(.system(size: 19))
                         .padding(.bottom, 1)
                         
                         NavigationLink("Settings", destination: EmojiSettingsView(game: emojiGame))
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.gray)
                         .frame(width: 90, height: 35)
-                        .background(Color.gray)
+                            .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .font(.system(size: 15))
                     }

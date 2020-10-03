@@ -25,7 +25,7 @@ struct EmojiGameOptionsView: View {
                 }
                 .foregroundColor(emojiThemes[index].color)
                 .frame(width: 200, height: 50)
-                .background(Color.gray)
+                .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .font(.system(size: 19))
                 .padding(.bottom)

@@ -35,7 +35,7 @@ class TempleConcentrationGame: ObservableObject {
     static var templeThemes = [
         TempleTheme(name: "Utah Temples", temples: ["brigham_city_utah", "cedar_city_utah", "draper_utah", "jordan_river_utah", "logan_utah", "manti_utah", "oquirrh_mountain_utah", "provo_city_center_utah", "salt_lake_utah"], color: Color.green, numberOfPairsOfCards: 9),
         TempleTheme(name: "European Temples", temples: ["bern_switzerland_europe", "copenhagen_denmark_europe", "freiberg_germany_europe", "helsinki_finland_europe", "kyiv_ukraine_europe", "london_england_europe", "madrid_spain_europe", "paris_france_europe", "rome_italy_europe"], color: Color.blue, numberOfPairsOfCards: 9),
-        TempleTheme(name: "South American Temples", temples: ["asuncion_paraguay_sa", "barranquilla_colombia_sa", "buenos_aires_argentina_sa", "cochabamba_bolivia_sa", "concepcion_chile_sa", "guayaquil_ecuador_sa", "lima_peru_sa", "rio_de_janeiro_sa", "trujillo_peru_sa"], color: Color.yellow, numberOfPairsOfCards: 9)
+        TempleTheme(name: "South American Temples", temples: ["asuncion_paraguay_sa", "barranquilla_colombia_sa", "buenos_aires_argentina_sa", "cochabamba_bolivia_sa", "concepcion_chile_sa", "guayaquil_ecuador_sa", "lima_peru_sa", "rio_de_janeiro_sa", "trujillo_peru_sa"], color: Color.purple, numberOfPairsOfCards: 9)
     ]
     
     private static func createGame(_ indexOfTheme: Int, overrideNumber: Int? = nil) -> ConcentrationGame<String> {
