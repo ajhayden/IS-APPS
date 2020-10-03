@@ -33,14 +33,21 @@ class ShapeConcentrationGame: ObservableObject {
     }
     
     static var shapeThemes = [
-        ShapeTheme(name: "Shapes Set 1", shapes: ["square", "circle", "badge"], color: Color.blue, numberOfPairsOfCards: 3),
-        ShapeTheme(name: "Shapes Set 2", shapes: ["squiggle", "circle", "rectangle"], color: Color.red, numberOfPairsOfCards: 3)
+        ShapeTheme(name: "Normal", shapes: ["square", "circle", "badge", "square", "circle", "badge"], color: Color.blue, numberOfPairsOfCards: 3),
+        ShapeTheme(name: "Squiggles", shapes: ["redSquiggle", "greenSquiggle", "blueSquiggle", "orangeSquiggle", "purpleSquiggle", "pinkSquiggle"], color: Color.red, numberOfPairsOfCards: 6)
     ]
     
-    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: shapeThemes[indexOfTheme].numberOfPairsOfCards) {
-            index in
-            shapeThemes[indexOfTheme].shapes[index]
+    private static func createGame(_ indexOfTheme: Int, overrideNumber: Int? = nil) -> ConcentrationGame<String> {
+        if overrideNumber == nil {
+            return ConcentrationGame<String>(numberOfPairsOfCards: shapeThemes[indexOfTheme].numberOfPairsOfCards) {
+                index in
+                shapeThemes[indexOfTheme].shapes[index]
+            }
+        } else {
+            return ConcentrationGame<String>(numberOfPairsOfCards: overrideNumber!) {
+                index in
+                shapeThemes[indexOfTheme].shapes[index]
+            }
         }
     }
     
@@ -68,6 +75,10 @@ class ShapeConcentrationGame: ObservableObject {
         return totalScore
     }
     
+    var cardColor: Color {
+        ShapeConcentrationGame.shapeThemes[indexOfTheme].color
+    }
+    
     var userDefault: UserDefaults {
         game.defaults
     }
@@ -84,6 +95,10 @@ class ShapeConcentrationGame: ObservableObject {
     
     func resetCards() {
         game = ShapeConcentrationGame.createGame(indexOfTheme)
+    }
+    
+    func resetCardsBySettings(newNumberOfPairsOfCards: Int = 2) {
+        game = ShapeConcentrationGame.createGame(indexOfTheme, overrideNumber: newNumberOfPairsOfCards)
     }
     
 }

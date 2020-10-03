@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmojiConcentrationGameView: View {
     @ObservedObject var emojiGame: EmojiConcentrationGame
+    var cardColor: Color = Color.black
     
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
@@ -30,16 +31,28 @@ struct EmojiConcentrationGameView: View {
                     }
                     
                     Spacer()
-                    Button("New Game") {
-                        withAnimation(.easeInOut(duration: 0.75)) {
-                            emojiGame.resetCards()
+                    
+                    VStack {
+                        Button("New Game") {
+                            withAnimation(.easeInOut(duration: 0.75)) {
+                                emojiGame.resetCards()
+                            }
                         }
+                        .foregroundColor(Color.white)
+                        .frame(width: 110, height: 45)
+                        .background(emojiGame.cardColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .font(.system(size: 19))
+                        .padding(.bottom, 1)
+                        
+                        NavigationLink("Settings", destination: EmojiSettingsView(game: emojiGame))
+                        .foregroundColor(Color.white)
+                        .frame(width: 90, height: 35)
+                        .background(Color.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.system(size: 15))
                     }
-                    .foregroundColor(Color.white)
-                    .frame(width: 110, height: 60)
-                    .background(emojiGame.cardColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .font(.system(size: 19))
+                    
                 }
                 .padding(.top, 20)
                 .padding(.leading, 40)

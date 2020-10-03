@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TempleConcentrationGameView: View {
     @ObservedObject var templeGame: TempleConcentrationGame
-    var cardColor: Color = Color.black
     
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
@@ -22,7 +21,7 @@ struct TempleConcentrationGameView: View {
                     VStack {
                         Text("Score: \(templeGame.score)")
                             .bold()
-                            .foregroundColor(cardColor)
+                            .foregroundColor(templeGame.cardColor)
                             .font(.system(size: 20))
                         Text("High Score: \(templeGame.userDefault.string(forKey: "temple\(TempleConcentrationGame.templeThemes[templeGame.indexOfTheme].name)HighScore") ?? "Never Played")")
                             .bold()
@@ -30,16 +29,27 @@ struct TempleConcentrationGameView: View {
                             .font(.system(size: 10))
                     }
                     Spacer()
-                    Button("New Game") {
-                        withAnimation(.easeInOut) {
-                            templeGame.resetCards()
+                    
+                    VStack {
+                        Button("New Game") {
+                            withAnimation(.easeInOut(duration: 0.75)) {
+                                templeGame.resetCards()
+                            }
                         }
+                        .foregroundColor(Color.white)
+                        .frame(width: 110, height: 45)
+                        .background(templeGame.cardColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.system(size: 19))
+                        .padding(.bottom, 1)
+                        
+                        NavigationLink("Settings", destination: TempleSettingsView(game: templeGame))
+                        .foregroundColor(Color.white)
+                        .frame(width: 90, height: 35)
+                        .background(Color.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.system(size: 15))
                     }
-                    .foregroundColor(Color.white)
-                    .frame(width: 110, height: 60)
-                    .background(cardColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .font(.system(size: 19))
                 }
                 .padding(.top, 10)
                 .padding(.leading, 40)
@@ -69,7 +79,7 @@ struct TempleConcentrationGameView: View {
                     .padding(.leading, 40)
                     .padding(.trailing, 40)
                     .padding(.bottom, 0)
-                    .foregroundColor(cardColor)
+                    .foregroundColor(templeGame.cardColor)
                 }
             }
         }

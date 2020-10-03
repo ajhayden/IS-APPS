@@ -30,7 +30,11 @@
 		3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */; };
 		3FA66DF6250A6F7F00DF70B2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF5250A6F7F00DF70B2 /* CardView.swift */; };
 		3FA66DFA250A79A400DF70B2 /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA66DF9250A79A400DF70B2 /* Array+Identifiable.swift */; };
-		3FC531D925265A1900D6F42E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531D825265A1900D6F42E /* SettingsView.swift */; };
+		3FBBD7392527E4950040390B /* TempleSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBD7382527E4950040390B /* TempleSettingsView.swift */; };
+		3FBBD73B2527E7820040390B /* BasketballSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBD73A2527E7820040390B /* BasketballSettings.swift */; };
+		3FBBD73E2527E9A60040390B /* ShapeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBD73D2527E9A60040390B /* ShapeSettings.swift */; };
+		3FBBD7402527F0A00040390B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBD73F2527F0A00040390B /* SettingsView.swift */; };
+		3FC531D925265A1900D6F42E /* EmojiSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531D825265A1900D6F42E /* EmojiSettingsView.swift */; };
 		3FC531DE252675FD00D6F42E /* ShapeGameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531DD252675FD00D6F42E /* ShapeGameOptionsView.swift */; };
 		3FC531E0252676B600D6F42E /* ShapeConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531DF252676B600D6F42E /* ShapeConcentrationGame.swift */; };
 		3FC531E225267E7000D6F42E /* ShapeConcentrationGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC531E125267E7000D6F42E /* ShapeConcentrationGameView.swift */; };
@@ -91,7 +95,11 @@
 		3FA66DF22509B87F00DF70B2 /* EmojiConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiConcentrationGame.swift; sourceTree = "<group>"; };
 		3FA66DF5250A6F7F00DF70B2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3FA66DF9250A79A400DF70B2 /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
-		3FC531D825265A1900D6F42E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3FBBD7382527E4950040390B /* TempleSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempleSettingsView.swift; sourceTree = "<group>"; };
+		3FBBD73A2527E7820040390B /* BasketballSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballSettings.swift; sourceTree = "<group>"; };
+		3FBBD73D2527E9A60040390B /* ShapeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSettings.swift; sourceTree = "<group>"; };
+		3FBBD73F2527F0A00040390B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3FC531D825265A1900D6F42E /* EmojiSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSettingsView.swift; sourceTree = "<group>"; };
 		3FC531DD252675FD00D6F42E /* ShapeGameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGameOptionsView.swift; sourceTree = "<group>"; };
 		3FC531DF252676B600D6F42E /* ShapeConcentrationGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeConcentrationGame.swift; sourceTree = "<group>"; };
 		3FC531E125267E7000D6F42E /* ShapeConcentrationGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeConcentrationGameView.swift; sourceTree = "<group>"; };
@@ -213,8 +221,8 @@
 				3F98A7F0251BFB1C00692280 /* Home.swift */,
 				3F62BB0C251978160040400D /* Cardify.swift */,
 				3F62BB0A2513B1B30040400D /* Pie.swift */,
+				3FBBD73F2527F0A00040390B /* SettingsView.swift */,
 				3F98A7F4251C1BA300692280 /* ScoresView.swift */,
-				3FC531D825265A1900D6F42E /* SettingsView.swift */,
 				3FC531DC2526739600D6F42E /* shape */,
 				3FC531EB2526DFE500D6F42E /* basketball */,
 				3FC531DA2526733F00D6F42E /* emoji */,
@@ -246,12 +254,23 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		3FBBD73C2527E96F0040390B /* shapeStyles */ = {
+			isa = PBXGroup;
+			children = (
+				3FC531E92526D24900D6F42E /* SquiggleView.swift */,
+				3FC531E72526CC3300D6F42E /* HexagonParameters.swift */,
+				3FC531E52526CB7800D6F42E /* Hexagon.swift */,
+			);
+			path = shapeStyles;
+			sourceTree = "<group>";
+		};
 		3FC531DA2526733F00D6F42E /* emoji */ = {
 			isa = PBXGroup;
 			children = (
 				3FA66DC72509AE7200DF70B2 /* EmojiConcentrationGameView.swift */,
 				3F98A7F2251C097B00692280 /* EmojiGameOptionsView.swift */,
 				3FA66DF5250A6F7F00DF70B2 /* CardView.swift */,
+				3FC531D825265A1900D6F42E /* EmojiSettingsView.swift */,
 			);
 			path = emoji;
 			sourceTree = "<group>";
@@ -262,6 +281,7 @@
 				3F8259EE252289B700F23CF8 /* TempleConcentrationGameView.swift */,
 				3F8259EC2522876700F23CF8 /* TempleGameOptionsView.swift */,
 				3F8259F025228A4800F23CF8 /* TempleCardView.swift */,
+				3FBBD7382527E4950040390B /* TempleSettingsView.swift */,
 			);
 			path = temple;
 			sourceTree = "<group>";
@@ -270,11 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				3FC531DD252675FD00D6F42E /* ShapeGameOptionsView.swift */,
+				3FBBD73D2527E9A60040390B /* ShapeSettings.swift */,
 				3FC531E125267E7000D6F42E /* ShapeConcentrationGameView.swift */,
 				3FC531E32526862A00D6F42E /* ShapeView.swift */,
-				3FC531E52526CB7800D6F42E /* Hexagon.swift */,
-				3FC531E72526CC3300D6F42E /* HexagonParameters.swift */,
-				3FC531E92526D24900D6F42E /* SquiggleView.swift */,
+				3FBBD73C2527E96F0040390B /* shapeStyles */,
 			);
 			path = shape;
 			sourceTree = "<group>";
@@ -283,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC531EC2526E01700D6F42E /* BasketballConcentrationGameView.swift */,
+				3FBBD73A2527E7820040390B /* BasketballSettings.swift */,
 				3FC531EE2526E03800D6F42E /* BasketballGameOptionsView.swift */,
 				3FC531F02526E05000D6F42E /* BasketballCardView.swift */,
 			);
@@ -420,12 +440,14 @@
 			files = (
 				3F98A7F5251C1BA300692280 /* ScoresView.swift in Sources */,
 				3FC531F12526E05000D6F42E /* BasketballCardView.swift in Sources */,
+				3FBBD73E2527E9A60040390B /* ShapeSettings.swift in Sources */,
 				3F8259F6252429D300F23CF8 /* KeyStore.swift in Sources */,
 				3F98A7F3251C097B00692280 /* EmojiGameOptionsView.swift in Sources */,
 				3F8259EF252289B700F23CF8 /* TempleConcentrationGameView.swift in Sources */,
 				3FA66DF32509B87F00DF70B2 /* EmojiConcentrationGame.swift in Sources */,
+				3FBBD7392527E4950040390B /* TempleSettingsView.swift in Sources */,
 				3FC531ED2526E01700D6F42E /* BasketballConcentrationGameView.swift in Sources */,
-				3FC531D925265A1900D6F42E /* SettingsView.swift in Sources */,
+				3FC531D925265A1900D6F42E /* EmojiSettingsView.swift in Sources */,
 				3FC531E42526862A00D6F42E /* ShapeView.swift in Sources */,
 				3FC531E225267E7000D6F42E /* ShapeConcentrationGameView.swift in Sources */,
 				3FC531F32526E06B00D6F42E /* BasketballConcentrationGame.swift in Sources */,
@@ -439,6 +461,7 @@
 				3F62BB0D251978160040400D /* Cardify.swift in Sources */,
 				3FA66DC82509AE7200DF70B2 /* EmojiConcentrationGameView.swift in Sources */,
 				3FA66DC62509AE7200DF70B2 /* ConcentrationApp.swift in Sources */,
+				3FBBD7402527F0A00040390B /* SettingsView.swift in Sources */,
 				3F8259EB252283CC00F23CF8 /* TempleConcentrationGame.swift in Sources */,
 				3FA66DFA250A79A400DF70B2 /* Array+Identifiable.swift in Sources */,
 				3FC531DE252675FD00D6F42E /* ShapeGameOptionsView.swift in Sources */,
@@ -448,6 +471,7 @@
 				3F8259FC2524560600F23CF8 /* HighScoreViewModel.swift in Sources */,
 				3F8259F325237F6900F23CF8 /* SoundPlayer.swift in Sources */,
 				3FC531EA2526D24900D6F42E /* SquiggleView.swift in Sources */,
+				3FBBD73B2527E7820040390B /* BasketballSettings.swift in Sources */,
 				3FA66DF6250A6F7F00DF70B2 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

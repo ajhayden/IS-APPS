@@ -15,7 +15,7 @@ struct EmojiGameOptionsView: View {
         VStack {
             Text("Emoji Mojo")
                 .bold()
-                .foregroundColor(Color.purple)
+                .foregroundColor(Color.gray)
                 .font(.system(size: 30))
                 .padding(.bottom, 30)
             
@@ -23,10 +23,10 @@ struct EmojiGameOptionsView: View {
                 NavigationLink(destination: EmojiConcentrationGameView(emojiGame: EmojiConcentrationGame(indexOfTheme: index))) {
                     Text("\(emojiThemes[index].name)")
                 }
-                .foregroundColor(Color.white)
+                .foregroundColor(emojiThemes[index].color)
                 .frame(width: 200, height: 50)
-                .background(emojiThemes[index].color)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .background(Color.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 .font(.system(size: 19))
                 .padding(.bottom)
             }

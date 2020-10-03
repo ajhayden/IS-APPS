@@ -1,27 +1,25 @@
 //
-//  GameSettingsView.swift
+//  SettingsView.swift
 //  Concentration
 //
-//  Created by Student on 10/2/20.
+//  Created by Student on 10/1/20.
 //
 
 import SwiftUI
 
-import SwiftUI
-
-struct SettingsView: View {
-    @State var soundOn: Bool = true
+struct EmojiSettingsView: View {
+    var game: EmojiConcentrationGame
+    @State private var current_num: Double = 1.0
     var body: some View {
         VStack {
             NavigationView {
                     Form {
-                        Section(header: Text("Settings")) {
-                            Toggle(isOn: $soundOn) {
-                                Text("Sound Effects")
-                            }
+                        Section(header: Text("Game Settings")) {
+                            Slider(value: $current_num, in: 1...6, step: 1)
+                            Text("Pairs of Cards: \(Int(current_num))")
                             Button("Save") {
                                 withAnimation(.easeInOut(duration: 0.5)) {
-                                    print("Saved")
+                                    game.resetCardsBySettings(newNumberOfPairsOfCards: Int(current_num))
                                 }
                             }
                             .foregroundColor(Color.white)
@@ -39,8 +37,8 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
+struct EmojiSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        EmojiSettingsView(game: EmojiConcentrationGame(indexOfTheme: 0))
     }
 }

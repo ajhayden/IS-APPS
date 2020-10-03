@@ -38,10 +38,17 @@ class BasketballConcentrationGame: ObservableObject {
         BasketballTheme(name: "The Kids", players: ["lebron_kid", "durant_kid", "leonard_kid", "curry_kid", "mitchell_kid", "kobe_kid"], color: Color.red, numberOfPairsOfCards: 6)
     ]
     
-    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: basketballThemes[indexOfTheme].numberOfPairsOfCards) {
-            index in
-            basketballThemes[indexOfTheme].players[index]
+    private static func createGame(_ indexOfTheme: Int, overrideNumber: Int? = nil) -> ConcentrationGame<String> {
+        if overrideNumber == nil {
+            return ConcentrationGame<String>(numberOfPairsOfCards: basketballThemes[indexOfTheme].numberOfPairsOfCards) {
+                index in
+                basketballThemes[indexOfTheme].players[index]
+            }
+        } else {
+            return ConcentrationGame<String>(numberOfPairsOfCards: overrideNumber!) {
+                index in
+                basketballThemes[indexOfTheme].players[index]
+            }
         }
     }
     
@@ -69,6 +76,10 @@ class BasketballConcentrationGame: ObservableObject {
         return totalScore
     }
     
+    var cardColor: Color {
+        BasketballConcentrationGame.basketballThemes[indexOfTheme].color
+    }
+    
     var userDefault: UserDefaults {
         game.defaults
     }
@@ -85,6 +96,10 @@ class BasketballConcentrationGame: ObservableObject {
     
     func resetCards() {
         game = BasketballConcentrationGame.createGame(indexOfTheme)
+    }
+    
+    func resetCardsBySettings(newNumberOfPairsOfCards: Int = 2) {
+        game = BasketballConcentrationGame.createGame(indexOfTheme, overrideNumber: newNumberOfPairsOfCards)
     }
     
 }

@@ -69,6 +69,55 @@ struct BadgeView: View {
     }
 }
 
+struct GreenSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.green)
+    }
+}
+
+struct RedSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.red)
+    }
+}
+
+struct BlueSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.blue)
+    }
+}
+
+struct PinkSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.pink)
+    }
+}
+
+struct OrangeSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.orange)
+    }
+}
+
+struct PurpleSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.purple)
+    }
+}
+
+struct BlackSquiggleView: View {
+    var body: some View {
+        SquiggleView()
+            .foregroundColor(.black)
+    }
+}
+
 
 struct ShapeView: View {
     var card: ConcentrationGame<String>.Card
@@ -134,11 +183,25 @@ struct ShapeView: View {
                 .cornerRadius(10)
                 .padding(15)
         }
-        else if card.content == "squiggle" {
-            SquiggleView()
+        else if card.content == "redSquiggle" {
+            RedSquiggleView()
         }
-        else {
-            RectangleView()
+        else if card.content == "greenSquiggle" {
+            GreenSquiggleView()
+        }
+        else if card.content == "blueSquiggle" {
+            BlueSquiggleView()
+        }
+        else if card.content == "pinkSquiggle" {
+            PinkSquiggleView()
+        }
+        else if card.content == "orangeSquiggle" {
+            OrangeSquiggleView()
+        }
+        else if card.content == "purpleSquiggle" {
+            BlackSquiggleView()
+        } else {
+            SquiggleView()
         }
         
     }

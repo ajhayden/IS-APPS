@@ -10,17 +10,28 @@ import SwiftUI
 struct ScoresView: View {
     
     @ObservedObject var highScoreViewModel: HighScoreViewModel
-    
+    var hsString = "Never Played"
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 Group {
+                    Text("Overall High Score")
+                        .bold()
+                        .foregroundColor(Color.pink)
+                        .font(.system(size: 20))
+                    Text("\(highScoreViewModel.overallHighScore)")
+                        .bold()
+                        .foregroundColor(Color.black)
+                }
+                .padding(.bottom, 5)
+                
+                Group {
                     VStack(alignment: .leading) {
-                        Text("Emoji Mojo Scores")
+                        Text("Emoji Mojo")
                             .bold()
                             .foregroundColor(Color.purple)
                             .font(.system(size: 20))
-                            .padding(.bottom, 10)
+                            .padding(.bottom, 5)
                         Text("Animals: \(highScoreViewModel.userDefault.string(forKey: "emojiAnimalsHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
@@ -41,7 +52,7 @@ struct ScoresView: View {
                             .foregroundColor(Color.black)
                     }
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
                 
                 Group {
                     VStack(alignment: .leading) {
@@ -49,7 +60,7 @@ struct ScoresView: View {
                             .bold()
                             .foregroundColor(Color.green)
                             .font(.system(size: 20))
-                            .padding(.bottom, 10)
+                            .padding(.bottom, 5)
                         Text("Utah: \(highScoreViewModel.userDefault.string(forKey: "templeUtah TemplesHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
@@ -61,7 +72,7 @@ struct ScoresView: View {
                             .foregroundColor(Color.black)
                     }
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
                 
                 Group {
                     VStack(alignment: .leading) {
@@ -69,16 +80,16 @@ struct ScoresView: View {
                             .bold()
                             .foregroundColor(Color.blue)
                             .font(.system(size: 20))
-                            .padding(.bottom, 10)
-                        Text("Shape Set 1: \(highScoreViewModel.userDefault.string(forKey: "shapeShapes Set 1HighScore") ?? "Never Played")")
+                            .padding(.bottom, 5)
+                        Text("Normal: \(highScoreViewModel.userDefault.string(forKey: "shapeNormalHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
-                        Text("Shape Set 2: \(highScoreViewModel.userDefault.string(forKey: "shapesShapes Set 2HighScore") ?? "Never Played")")
+                        Text("Squiggles: \(highScoreViewModel.userDefault.string(forKey: "shapeSquigglesHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
                     }
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
                 
                 Group {
                     VStack(alignment: .leading) {
@@ -86,7 +97,7 @@ struct ScoresView: View {
                             .bold()
                             .foregroundColor(Color.orange)
                             .font(.system(size: 20))
-                            .padding(.bottom, 10)
+                            .padding(.bottom, 5)
                         Text("NBA: \(highScoreViewModel.userDefault.string(forKey: "basketballNBAHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)

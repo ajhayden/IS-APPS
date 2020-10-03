@@ -44,18 +44,28 @@ struct SquiggleShape: Shape {
 
 struct SquiggleView: View {
     var body: some View {
-//            ZStack {
-//                SquiggleShape().fill(Color.white)
-//                SquiggleShape().opacity(0.5)
-//                SquiggleShape().stroke(lineWidth: 4.0)
-//            }
-//            ZStack {
-//                SquiggleShape().fill(Color.white)
-//                SquiggleShape().stroke(lineWidth: 4.0)
-//            }
-                SquiggleShape()
+        HStack {
+            ZStack {
+                SquiggleShape().fill(Color.white)
                     .aspectRatio(contentMode: .fit)
-                    .cardify(isFaceUp: true)
+                SquiggleShape().opacity(0.5)
+                    .aspectRatio(contentMode: .fit)
+                SquiggleShape().stroke(lineWidth: 4.0)
+                    .aspectRatio(contentMode: .fit)
+                
+            }
+            ZStack {
+                SquiggleShape().fill(Color.white)
+                    .aspectRatio(contentMode: .fit)
+                SquiggleShape().stroke(lineWidth: 4.0)
+                    .aspectRatio(contentMode: .fit)
+            }
+            ZStack {
+                SquiggleShape()
+                .aspectRatio(contentMode: .fit)
+            }
+        }
+        .padding()
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BasketballConcentrationGameView: View {
     @ObservedObject var basketballGame: BasketballConcentrationGame
-    var cardColor: Color = Color.black
     
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
@@ -22,7 +21,7 @@ struct BasketballConcentrationGameView: View {
                     VStack {
                         Text("Score: \(basketballGame.score)")
                             .bold()
-                            .foregroundColor(cardColor)
+                            .foregroundColor(basketballGame.cardColor)
                             .font(.system(size: 20))
                         Text("High Score: \(basketballGame.userDefault.string(forKey: "basketball\(BasketballConcentrationGame.basketballThemes[basketballGame.indexOfTheme].name)HighScore") ?? "Never Played")")
                             .bold()
@@ -30,16 +29,27 @@ struct BasketballConcentrationGameView: View {
                             .font(.system(size: 10))
                     }
                     Spacer()
-                    Button("New Game") {
-                        withAnimation(.easeInOut) {
-                            basketballGame.resetCards()
+                    
+                    VStack {
+                        Button("New Game") {
+                            withAnimation(.easeInOut(duration: 0.75)) {
+                                basketballGame.resetCards()
+                            }
                         }
+                        .foregroundColor(Color.white)
+                        .frame(width: 110, height: 45)
+                        .background(basketballGame.cardColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .font(.system(size: 19))
+                        .padding(.bottom, 1)
+                        
+                        NavigationLink("Settings", destination: BasketballSettingsView(game: basketballGame))
+                        .foregroundColor(Color.white)
+                        .frame(width: 90, height: 35)
+                        .background(Color.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.system(size: 15))
                     }
-                    .foregroundColor(Color.white)
-                    .frame(width: 110, height: 60)
-                    .background(cardColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .font(.system(size: 19))
                 }
                 .padding(.top, 10)
                 .padding(.leading, 40)
@@ -69,7 +79,7 @@ struct BasketballConcentrationGameView: View {
                     .padding(.leading, 40)
                     .padding(.trailing, 40)
                     .padding(.bottom, 0)
-                    .foregroundColor(cardColor)
+                    .foregroundColor(basketballGame.cardColor)
                 }
             }
         }

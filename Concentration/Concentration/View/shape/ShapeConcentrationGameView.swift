@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ShapeConcentrationGameView: View {
     @ObservedObject var shapeGame: ShapeConcentrationGame
-
-    var cardColor: Color = Color.black
     
     private func columns(for size: CGSize) -> [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(size.width / desiredCardWidth))
@@ -23,7 +21,7 @@ struct ShapeConcentrationGameView: View {
                     VStack {
                         Text("Score: \(shapeGame.score)")
                             .bold()
-                            .foregroundColor(cardColor)
+                            .foregroundColor(shapeGame.cardColor)
                             .font(.system(size: 20))
                         Text("High Score: \(shapeGame.userDefault.string(forKey: "shape\(ShapeConcentrationGame.shapeThemes[shapeGame.indexOfTheme].name)HighScore") ?? "Never Played")")
                             .bold()
@@ -32,16 +30,27 @@ struct ShapeConcentrationGameView: View {
                     }
                     
                     Spacer()
-                    Button("New Game") {
-                        withAnimation(.easeInOut) {
-                            shapeGame.resetCards()
+                    
+                    VStack {
+                        Button("New Game") {
+                            withAnimation(.easeInOut(duration: 0.75)) {
+                                shapeGame.resetCards()
+                            }
                         }
+                        .foregroundColor(Color.white)
+                        .frame(width: 110, height: 45)
+                        .background(shapeGame.cardColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .font(.system(size: 19))
+                        .padding(.bottom, 1)
+                        
+                        NavigationLink("Settings", destination: ShapeSettingsView(game: shapeGame))
+                        .foregroundColor(Color.white)
+                        .frame(width: 90, height: 35)
+                        .background(Color.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.system(size: 15))
                     }
-                    .foregroundColor(Color.white)
-                    .frame(width: 110, height: 60)
-                    .background(cardColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .font(.system(size: 19))
                 }
                 .padding(.top, 20)
                 .padding(.leading, 40)
@@ -70,7 +79,7 @@ struct ShapeConcentrationGameView: View {
                     .padding(.top, 20)
                     .padding(.leading, 40)
                     .padding(.trailing, 40)
-                    .foregroundColor(cardColor)
+                    .foregroundColor(shapeGame.cardColor)
                 }
             }
         }

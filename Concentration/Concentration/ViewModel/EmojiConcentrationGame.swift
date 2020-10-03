@@ -39,14 +39,19 @@ class EmojiConcentrationGame: ObservableObject {
         EmojiTheme(name: "Faces", emojis: ["😀", "😉", "😇", "😡", "😜", "🥶"], color: Color.yellow, numberOfPairsOfCards: 6),
         EmojiTheme(name: "Fruits", emojis: ["🍓", "🍐", "🍊", "🍑", "🥝", "🍍"], color: Color.orange, numberOfPairsOfCards: 6),
         EmojiTheme(name: "Sports", emojis: ["🏀", "⚽️", "🏈", "⚾️", "🎾", "🏐"], color: Color.red, numberOfPairsOfCards: 6),
-        EmojiTheme(name: "Random", emojis: [], color: Color.gray, numberOfPairsOfCards: 6)
+        EmojiTheme(name: "Random", emojis: [], color: Color.blue, numberOfPairsOfCards: 6)
     ]
     
     static var additonalColors = [
         Color.pink,
         Color.blue,
         Color.black,
-        Color.gray
+        Color.gray,
+        Color.green,
+        Color.yellow,
+        Color.orange,
+        Color.red,
+        Color.purple
     ]
     
     private static func randomEmojiTheme() -> EmojiTheme {
@@ -55,10 +60,17 @@ class EmojiConcentrationGame: ObservableObject {
         return EmojiTheme(name: "Random", emojis: EmojiConcentrationGame.emojiThemes[randomIndexEmojis].emojis, color: EmojiConcentrationGame.additonalColors.randomElement() ?? .red, numberOfPairsOfCards: randomIndexNumberOfPairs)
     }
     
-    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: emojiThemes[indexOfTheme].numberOfPairsOfCards) {
-            index in
-            emojiThemes[indexOfTheme].emojis[index]
+    private static func createGame(_ indexOfTheme: Int, overrideNumber: Int? = nil) -> ConcentrationGame<String> {
+        if overrideNumber == nil {
+            return ConcentrationGame<String>(numberOfPairsOfCards: emojiThemes[indexOfTheme].numberOfPairsOfCards) {
+                index in
+                emojiThemes[indexOfTheme].emojis[index]
+            }
+        } else {
+            return ConcentrationGame<String>(numberOfPairsOfCards: overrideNumber!) {
+                index in
+                emojiThemes[indexOfTheme].emojis[index]
+            }
         }
     }
     
@@ -107,6 +119,11 @@ class EmojiConcentrationGame: ObservableObject {
     func resetCards() {
         EmojiConcentrationGame.emojiThemes[EmojiConcentrationGame.emojiThemes.count - 1] = EmojiConcentrationGame.randomEmojiTheme()
         game = EmojiConcentrationGame.createGame(indexOfTheme)
+    }
+    
+    func resetCardsBySettings(newNumberOfPairsOfCards: Int = 2) {
+        EmojiConcentrationGame.emojiThemes[EmojiConcentrationGame.emojiThemes.count - 1] = EmojiConcentrationGame.randomEmojiTheme()
+        game = EmojiConcentrationGame.createGame(indexOfTheme, overrideNumber: newNumberOfPairsOfCards)
     }
     
 }

@@ -15,18 +15,18 @@ struct TempleGameOptionsView: View {
         VStack {
             Text("Temple Match")
                 .bold()
-                .foregroundColor(Color.green)
+                .foregroundColor(Color.gray)
                 .font(.system(size: 30))
                 .padding(.bottom, 30)
             
             ForEach(templeThemes.indices) { index in
-                NavigationLink(destination: TempleConcentrationGameView(templeGame: TempleConcentrationGame(indexOfTheme: index), cardColor: templeThemes[index].color)) {
+                NavigationLink(destination: TempleConcentrationGameView(templeGame: TempleConcentrationGame(indexOfTheme: index))) {
                     Text("\(templeThemes[index].name)")
                 }
-                .foregroundColor(Color.white)
+                .foregroundColor(templeThemes[index].color)
                 .frame(width: 200, height: 50)
-                .background(templeThemes[index].color)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .background(Color.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 .font(.system(size: 19))
                 .padding(.bottom)
             }

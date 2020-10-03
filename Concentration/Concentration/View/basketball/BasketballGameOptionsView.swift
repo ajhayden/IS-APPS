@@ -15,18 +15,18 @@ struct BasketballGameOptionsView: View {
         VStack {
             Text("Basketball Bounce")
                 .bold()
-                .foregroundColor(Color.green)
+                .foregroundColor(Color.gray)
                 .font(.system(size: 30))
                 .padding(.bottom, 30)
             
             ForEach(basketballThemes.indices) { index in
-                NavigationLink(destination: BasketballConcentrationGameView(basketballGame: BasketballConcentrationGame(indexOfTheme: index), cardColor: basketballThemes[index].color)) {
+                NavigationLink(destination: BasketballConcentrationGameView(basketballGame: BasketballConcentrationGame(indexOfTheme: index))) {
                     Text("\(basketballThemes[index].name)")
                 }
-                .foregroundColor(Color.white)
+                .foregroundColor(basketballThemes[index].color)
                 .frame(width: 200, height: 50)
-                .background(basketballThemes[index].color)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .background(Color.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 .font(.system(size: 19))
                 .padding(.bottom)
             }

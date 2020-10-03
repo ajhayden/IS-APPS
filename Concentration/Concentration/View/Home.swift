@@ -60,12 +60,12 @@ struct Home: View {
                         .padding(.bottom, 30)
                     ForEach(menuItems) { item in
                         NavigationLink(item.name, destination: viewBuilder(viewType: item.name))
-                            .foregroundColor(Color.white)
+                            .foregroundColor(item.color)
                             .frame(width: 200, height: 50)
-                            .background(item.color)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .font(.system(size: 19))
-                            .padding(.bottom, 15)
+                            .background(Color.gray)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .font(.system(size: 20))
+                            .padding(.bottom, 13)
                     }
                     HStack {
                         ForEach(menuItems2) { item in
@@ -74,12 +74,14 @@ struct Home: View {
                                 .frame(width: 95, height: 50)
                                 .multilineTextAlignment(.center)
                                 .background(Color.gray)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .font(.system(size: 19))
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                .font(.system(size: 13))
                     }
                 }
             }
+            .padding(0)
         }
+        .padding(0)
     }
 }
 

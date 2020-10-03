@@ -1,5 +1,5 @@
 //
-//  GameSettingsView.swift
+//  TempleSettingsView.swift
 //  Concentration
 //
 //  Created by Student on 10/2/20.
@@ -7,21 +7,19 @@
 
 import SwiftUI
 
-import SwiftUI
-
-struct SettingsView: View {
-    @State var soundOn: Bool = true
+struct TempleSettingsView: View {
+    var game: TempleConcentrationGame
+    @State private var current_num: Double = 1.0
     var body: some View {
         VStack {
             NavigationView {
                     Form {
-                        Section(header: Text("Settings")) {
-                            Toggle(isOn: $soundOn) {
-                                Text("Sound Effects")
-                            }
+                        Section(header: Text("Game Settings")) {
+                            Slider(value: $current_num, in: 1...9, step: 1)
+                            Text("New value: \(Int(current_num))")
                             Button("Save") {
                                 withAnimation(.easeInOut(duration: 0.5)) {
-                                    print("Saved")
+                                    game.resetCardsBySettings(newNumberOfPairsOfCards: Int(current_num))
                                 }
                             }
                             .foregroundColor(Color.white)
@@ -39,8 +37,9 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
+struct TempleSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        TempleSettingsView(game: TempleConcentrationGame(indexOfTheme: 0))
     }
 }
+

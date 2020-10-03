@@ -38,10 +38,17 @@ class TempleConcentrationGame: ObservableObject {
         TempleTheme(name: "South American Temples", temples: ["asuncion_paraguay_sa", "barranquilla_colombia_sa", "buenos_aires_argentina_sa", "cochabamba_bolivia_sa", "concepcion_chile_sa", "guayaquil_ecuador_sa", "lima_peru_sa", "rio_de_janeiro_sa", "trujillo_peru_sa"], color: Color.yellow, numberOfPairsOfCards: 9)
     ]
     
-    private static func createGame(_ indexOfTheme: Int) -> ConcentrationGame<String> {
-        ConcentrationGame<String>(numberOfPairsOfCards: templeThemes[indexOfTheme].numberOfPairsOfCards) {
-            index in
-            templeThemes[indexOfTheme].temples[index]
+    private static func createGame(_ indexOfTheme: Int, overrideNumber: Int? = nil) -> ConcentrationGame<String> {
+        if overrideNumber == nil {
+            return ConcentrationGame<String>(numberOfPairsOfCards: templeThemes[indexOfTheme].numberOfPairsOfCards) {
+                index in
+                templeThemes[indexOfTheme].temples[index]
+            }
+        } else {
+            return ConcentrationGame<String>(numberOfPairsOfCards: overrideNumber!) {
+                index in
+                templeThemes[indexOfTheme].temples[index]
+            }
         }
     }
     
@@ -69,6 +76,10 @@ class TempleConcentrationGame: ObservableObject {
         return totalScore
     }
     
+    var cardColor: Color {
+        TempleConcentrationGame.templeThemes[indexOfTheme].color
+    }
+    
     var userDefault: UserDefaults {
         game.defaults
     }
@@ -85,6 +96,10 @@ class TempleConcentrationGame: ObservableObject {
     
     func resetCards() {
         game = TempleConcentrationGame.createGame(indexOfTheme)
+    }
+    
+    func resetCardsBySettings(newNumberOfPairsOfCards: Int = 2) {
+        game = TempleConcentrationGame.createGame(indexOfTheme, overrideNumber: newNumberOfPairsOfCards)
     }
     
 }
