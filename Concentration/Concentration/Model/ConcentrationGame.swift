@@ -12,6 +12,8 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
     
     let defaults = UserDefaults.standard
     
+    var audioPlayer = SoundPlayer()
+    
     private var indexOfTheOneAndOnlyOneFaceUpCard: Int? {
         get { cards.indices.filter { cards[$0].isFaceUp }.only }
         
@@ -38,6 +40,7 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
     var cardsMatched = 0
 
     mutating func choose(_ card: Card, _ gameType: String, _ gameTheme: String, _ score: String) {
+//        UserDefaults.standard.register(defaults: ["soundOption": true])
         if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched {
             
             cards[chosenIndex].viewedCount += 1
@@ -47,9 +50,15 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                     cardsMatched = cardsMatched + 2
+                    if defaults.bool(forKey: "soundOption") == true {
+                        audioPlayer.playSound(named: "success.mp3")
+                    }
                 } else {
                     cards[chosenIndex].markMismatched()
                     cards[potentialMatchIndex].markMismatched()
+                    if defaults.bool(forKey: "soundOption") == true {
+                        audioPlayer.playSound(named: "fail2.mp3")
+                    }
                 }
                 cards[chosenIndex].isFaceUp = true
             } else {

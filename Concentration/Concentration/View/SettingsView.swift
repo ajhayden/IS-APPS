@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct SettingsView: View {
-    @State var soundOn: Bool = true
+    @State var soundOn: Bool = UserDefaults.standard.bool(forKey: "soundOption")
     var body: some View {
         VStack {
             NavigationView {
@@ -20,9 +18,8 @@ struct SettingsView: View {
                                 Text("Sound Effects")
                             }
                             Button("Save") {
-                                withAnimation(.easeInOut(duration: 0.5)) {
-                                    print("Saved")
-                                }
+                                
+                                UserDefaults.standard.set(soundOn, forKey: "soundOption")
                             }
                             .foregroundColor(Color.white)
                             .frame(width: 90, height: 40)
@@ -35,6 +32,9 @@ struct SettingsView: View {
                     }
                     .navigationBarTitle("Settings")
                 }
+        }
+        .onAppear {
+            soundOn = UserDefaults.standard.bool(forKey: "soundOption")
         }
     }
 }

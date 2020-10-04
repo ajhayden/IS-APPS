@@ -19,7 +19,7 @@ struct ScoresView: View {
                         .bold()
                         .foregroundColor(Color.pink)
                         .font(.system(size: 20))
-                    Text("\(highScoreViewModel.overallHighScore)")
+                    Text("Overall High Score: \(highScoreViewModel.overallHighScore)")
                         .bold()
                         .foregroundColor(Color.black)
                 }

@@ -79,10 +79,17 @@ struct Home: View {
                                 .font(.system(size: 13))
                         }
                     }
-                }
+                    .onAppear {
+                        registerSoundToTrue()
+                    }
+                }   
             }
         }
     }
+}
+
+func registerSoundToTrue() {
+    UserDefaults.standard.register(defaults: ["soundOption" : true])
 }
 
 struct Home_Previews: PreviewProvider {
