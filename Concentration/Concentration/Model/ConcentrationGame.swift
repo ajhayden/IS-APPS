@@ -56,9 +56,9 @@ struct ConcentrationGame<CardContent> where CardContent: Equatable {
                 } else {
                     cards[chosenIndex].markMismatched()
                     cards[potentialMatchIndex].markMismatched()
-                    if defaults.bool(forKey: "soundOption") == true {
-                        audioPlayer.playSound(named: "fail2.mp3")
-                    }
+//                    if defaults.bool(forKey: "soundOption") == true {
+//                        audioPlayer.playSound(named: "fail2.mp3")
+//                    }
                 }
                 cards[chosenIndex].isFaceUp = true
             } else {

@@ -15,7 +15,7 @@ struct BasketballSettingsView: View {
             NavigationView {
                     Form {
                         Section(header: Text("Game Settings")) {
-                            Slider(value: $current_num, in: 1...9, step: 1)
+                            Slider(value: $current_num, in: 1...6, step: 1)
                             Text("Pairs of Cards: \(Int(current_num))")
                             Button("Save") {
                                 withAnimation(.easeInOut(duration: 0.5)) {
