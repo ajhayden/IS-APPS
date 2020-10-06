@@ -1,7 +1,3 @@
 Project 1 Hayden Aaron
 
-Things I did well
-
-Things I did not so well
-
-Grade you earned
+Honestly, I feel that my application came out exteremely well. I met every requirement from the project assignment. I created a very dynamic application with a very clean user interface. I also went above and beyond the requirements and made my own personal matching game called "Basketball Bounce", which has the themes of specific basketball players in the nba, college, and as kids. In addition, I learned so much in this project and do not regret at all picking option 1. I learned about user defaults, audio, view modifiers, and animation. As for things I could have done better, there are a couple features I wanted to make better past the basic expectations. For example, I would like to figure out how to make the Sound Effect toggle button work without needing to use the save button I added, but I still feel like I met the requirement fully there and in every other area in my application. I honestly believe I deserve 100% on this project because I met the project expectations fully, put probably over 20 hours of work on it (I do not regret at all and loved it), and I went above and beyond in other areas (new matching game: "Basketball Bounce", clean and pleasant user interface, etc.)

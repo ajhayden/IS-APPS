@@ -67,7 +67,7 @@ struct ScoresView: View {
                         Text("Europe: \(highScoreViewModel.userDefault.string(forKey: "templeEuropean TemplesHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
-                        Text("South America: \(highScoreViewModel.userDefault.string(forKey: "emojiSouth American TemplesHighScore") ?? "Never Played")")
+                        Text("South America: \(highScoreViewModel.userDefault.string(forKey: "templeSouth American TemplesHighScore") ?? "Never Played")")
                             .bold()
                             .foregroundColor(Color.black)
                     }
