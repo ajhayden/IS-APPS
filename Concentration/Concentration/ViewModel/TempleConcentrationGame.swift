@@ -8,10 +8,10 @@
 import SwiftUI
 
 class TempleTheme: Identifiable {
-    var name: String
-    var temples: [String]
-    var color: Color
-    var numberOfPairsOfCards: Int
+    private(set) var name: String
+    private(set) var temples: [String]
+    private(set) var color: Color
+    private(set) var numberOfPairsOfCards: Int
     
     init(name: String, temples: [String], color: Color, numberOfPairsOfCards: Int) {
         self.name = name
@@ -25,7 +25,7 @@ class TempleConcentrationGame: ObservableObject {
     @Published private var game: ConcentrationGame<String>
     @Published private var isVisable = false
     
-    var indexOfTheme: Int
+    private(set) var indexOfTheme: Int
     
     init(indexOfTheme: Int = 0) {
         self.indexOfTheme = indexOfTheme

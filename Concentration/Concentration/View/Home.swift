@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MenuItem: Identifiable {
-    var id = UUID()
-    var name: String
-    var color: Color
+    private(set) var id = UUID()
+    private(set) var name: String
+    private(set) var color: Color
 }
 
 let menuItems = [
@@ -88,7 +88,7 @@ struct Home: View {
     }
 }
 
-func registerSoundToTrue() {
+private func registerSoundToTrue() {
     UserDefaults.standard.register(defaults: ["soundOption" : true])
 }
 

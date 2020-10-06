@@ -17,7 +17,7 @@ class HighScoreViewModel: ObservableObject {
     var overallHighScore: String {
         var highScoreToAdd = 0
         
-        let highScoreNameArray = ["emojiAnimalsHighScore", "emojiBreadsHighScore", "emojiFacesHighScore", "emojiFruitsHighScore", "emojiSportsHighScore", "emojiRandomHighScore", "templeUtah TemplesHighScore", "templeEuropean TemplesHighScore", "emojiSouth American TemplesHighScore", "shapeNormal", "shapeSquiggles", "basketballNBAHighScore", "basketballCollegeHighScore", "basketballThe KidsHighScore"]
+        let highScoreNameArray = ["emojiAnimalsHighScore", "emojiBreadsHighScore", "emojiFacesHighScore", "emojiFruitsHighScore", "emojiSportsHighScore", "emojiRandomHighScore", "templeUtah TemplesHighScore", "templeEuropean TemplesHighScore", "emojiSouth American TemplesHighScore", "shapeNormalHighScore", "shapeSquigglesHighScore", "basketballNBAHighScore", "basketballCollegeHighScore", "basketballThe KidsHighScore"]
         
         var scoresArray: [Int] = []
         

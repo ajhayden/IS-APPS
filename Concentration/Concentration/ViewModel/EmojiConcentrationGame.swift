@@ -8,10 +8,10 @@
 import SwiftUI
 
 class EmojiTheme: Identifiable {
-    var name: String
-    var emojis: [String]
-    var color: Color
-    var numberOfPairsOfCards: Int
+    private(set) var name: String
+    private(set) var emojis: [String]
+    private(set) var color: Color
+    private(set) var numberOfPairsOfCards: Int
     
     init(name: String, emojis: [String], color: Color, numberOfPairsOfCards: Int) {
         self.name = name
@@ -25,7 +25,7 @@ class EmojiConcentrationGame: ObservableObject {
     @Published private var game: ConcentrationGame<String>
     @Published private var isVisable = false
     
-    var indexOfTheme: Int
+    private(set) var indexOfTheme: Int
     
     init(indexOfTheme: Int = 0) {
         self.indexOfTheme = indexOfTheme
@@ -42,7 +42,7 @@ class EmojiConcentrationGame: ObservableObject {
         EmojiTheme(name: "Random", emojis: [], color: Color.blue, numberOfPairsOfCards: 6)
     ]
     
-    static var additonalColors = [
+    private(set) static var additonalColors = [
         Color.pink,
         Color.blue,
         Color.black,

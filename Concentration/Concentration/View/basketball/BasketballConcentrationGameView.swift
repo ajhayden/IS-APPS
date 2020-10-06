@@ -86,7 +86,7 @@ struct BasketballConcentrationGameView: View {
     }
     
 
-    func randomLocationOffScreen(for size: CGSize) -> CGSize {
+    private func randomLocationOffScreen(for size: CGSize) -> CGSize {
         var randomSize = CGSize.zero
         let randomAngle = Double.random(in: 0..<Double.pi * 2)
         let scaleFactor = max(size.width, size.height) * 1.5
