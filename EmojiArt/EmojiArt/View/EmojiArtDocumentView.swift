@@ -10,6 +10,8 @@ import SwiftUI
 struct EmojiArtDocumentView: View {
     @ObservedObject var document: EmojiArtDocument
     
+    @State private var zoomScale: CGFloat = 2
+    
     var body: some View {
         VStack {
             ScrollView(.horizontal) {
@@ -28,27 +30,39 @@ struct EmojiArtDocumentView: View {
             GeometryReader { geometry in
                 ZStack {
                     Color.white.overlay(
-                        Group {
-                            if let image = document.backgroundImage {
-                                Image(uiImage: image)
-                            }
-                        }
+                        OptionalImage(uiImage: document.backgroundImage)
+                            .scaleEffect(zoomScale)
                     )
-                    .edgesIgnoringSafeArea([.horizontal, .bottom])
-                    .onDrop(of: ["public.image", "public.text"], isTargeted: nil) { providers, location in
-                        var location = CGPoint(x: location.x, y: geometry.convert(location, from: .global).y)
-                        location = CGPoint(x: location.x - geometry.size.width / 2, y: location.y - geometry.size.height / 2)
-                        return drop(providers: providers, location: location)
-                    }
+                    .gesture(doubleTapToZoom(in: geometry.size))
+                        
                     
                     ForEach(self.document.emojis) { emoji in
                         Text(emoji.text)
-                            .font(self.font(for: emoji))
+                            .font(animatableWithSize: emoji.fontSize * zoomScale)
                             .position(self.position(for: emoji, in: geometry.size))
                     }
                 }
+                .clipped()
+                .edgesIgnoringSafeArea([.horizontal, .bottom])
+                .onDrop(of: ["public.image", "public.text"], isTargeted: nil) { providers, location in
+                    var location = CGPoint(x: location.x, y: geometry.convert(location, from: .global).y)
+                    
+                    location = CGPoint(x: location.x - geometry.size.width / 2, y: location.y - geometry.size.height / 2)
+                    location = CGPoint(x: location.x / zoomScale, y: location.y / zoomScale)
+                    
+                    return drop(providers: providers, location: location)
+                }
             }
         }
+    }
+    
+    private func doubleTapToZoom(in size: CGSize) -> some Gesture {
+        TapGesture(count: 2)
+            .onEnded {
+                withAnimation(.linear(duration: 1)) {
+                    zoomToFit(document.backgroundImage, in: size)
+                }
+            }
     }
     
     private func drop(providers: [NSItemProvider], location: CGPoint) -> Bool {
@@ -64,12 +78,22 @@ struct EmojiArtDocumentView: View {
         return found
     }
     
-    private func font(for emoji: EmojiArt.Emoji) -> Font {
-        Font.system(size: emoji.fontSize)
+    private func position(for emoji: EmojiArt.Emoji, in size: CGSize) -> CGPoint {
+        var location = emoji.location
+        
+        location = CGPoint(x: location.x * zoomScale, y: location.y * zoomScale)
+        location = CGPoint(x: location.x + size.width / 2, y: location.y + size.height / 2)
+        
+        return location
     }
     
-    private func position(for emoji: EmojiArt.Emoji, in size: CGSize) -> CGPoint {
-        CGPoint(x: emoji.location.x + size.width / 2, y: emoji.location.y + size.height / 2)
+    private func zoomToFit(_ image: UIImage?, in size: CGSize) {
+        if let image = image, image.size.width > 0, image.size.height > 0 {
+            let horizontalZoom = size.width / image.size.width
+            let verticalZoom = size.height / image.size.height
+            
+            zoomScale = min(horizontalZoom, verticalZoom)
+        }
     }
     
     // MARK: -Drawing constants

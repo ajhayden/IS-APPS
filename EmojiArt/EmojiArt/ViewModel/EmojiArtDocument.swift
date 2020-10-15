@@ -8,10 +8,32 @@
 import SwiftUI
 
 class EmojiArtDocument: ObservableObject {
+    
+    // MARK: - Constants
+    
+    private static let untitled = "EmojiArtDocument.untitled"
+    
     static let palette = "🐝🍎🚲🎈☀️☁️"
     
-    @Published private var emojiArt = EmojiArt()
+    // MARK: - Properties
+    
+    @Published private var emojiArt = EmojiArt() {
+        didSet {
+//            print(emojiArt.json?.utf8 ?? "nil")
+            UserDefaults.standard.set(emojiArt.json, forKey: EmojiArtDocument.untitled)
+        }
+    }
+    
     @Published private(set) var backgroundImage: UIImage?
+    
+    // MARK: - Initialization
+    
+    init() {
+        let jsonData = UserDefaults.standard.data(forKey: EmojiArtDocument.untitled)
+        
+        emojiArt = EmojiArt(json: jsonData) ?? EmojiArt()
+        fetchBackgroundImageData()
+    }
     
     // MARK: - Model acesss
     
