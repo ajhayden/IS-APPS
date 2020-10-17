@@ -10,6 +10,31 @@ import SwiftUI
 struct EmojiArtDocumentView: View {
     @ObservedObject var document: EmojiArtDocument
     
+    @State var emojisSelectedSet = Set<EmojiArt.Emoji>()
+    
+    @State private var selectedEmojisSteadyStatePanOffset: CGSize = .zero
+    @GestureState private var selectedEmojisGesturePanOffset: CGSize = .zero
+    
+    private var selectedEmojisPanOffset: CGSize {
+        (selectedEmojisSteadyStatePanOffset + selectedEmojisGesturePanOffset) * zoomScale
+    }
+    
+    private var selectedEmojisPanGesture: some Gesture {
+        DragGesture()
+            .updating($selectedEmojisGesturePanOffset) { latestDragGestureValue, selectedEmojisGesturePanOffset, transaction in
+                selectedEmojisGesturePanOffset = latestDragGestureValue.translation / zoomScale
+            }
+            .onEnded { finalDragGestureValue in
+                selectedEmojisSteadyStatePanOffset = selectedEmojisSteadyStatePanOffset + (finalDragGestureValue.translation / zoomScale)
+                
+                for emoji in emojisSelectedSet {
+                    self.document.move(emoji: emoji, by: selectedEmojisSteadyStatePanOffset)
+                    emojisSelectedSet.remove(emoji)
+                }
+                selectedEmojisSteadyStatePanOffset = .zero
+            }
+    }
+    
     @State private var steadyStatePanOffset: CGSize = .zero
     @GestureState private var gesturePanOffset: CGSize = .zero
     
@@ -68,14 +93,26 @@ struct EmojiArtDocumentView: View {
                     )
                     .gesture(doubleTapToZoom(in: geometry.size))
                         
-                    
                     ForEach(self.document.emojis) { emoji in
+                        let emojiSelected = emojisSelectedSet.contains(emoji)
                         Text(emoji.text)
+                            .border(Color.blue, width: emojiSelected ? 3 : 0)
                             .font(animatableWithSize: emoji.fontSize * zoomScale)
                             .position(self.position(for: emoji, in: geometry.size))
+                            .gesture(selectedEmojisPanGesture)
+                            .offset(emojiSelected ? selectedEmojisPanOffset : .zero)
+                            .onTapGesture {
+                                if emojiSelected {
+                                    emojisSelectedSet.remove(emoji)
+                                } else {
+                                    emojisSelectedSet.insert(emoji)
+                                }
+                                print(emojisSelectedSet)
+                            }
                     }
                 }
                 .clipped()
+                .gesture(tapToUnselectEmojis())
                 .gesture(panGesture)
                 .gesture(zoomGesture)
                 .edgesIgnoringSafeArea([.horizontal, .bottom])
@@ -90,6 +127,13 @@ struct EmojiArtDocumentView: View {
                 }
             }
         }
+    }
+    
+    private func tapToUnselectEmojis() -> some Gesture {
+        TapGesture(count: 1)
+            .onEnded {
+                emojisSelectedSet.removeAll()
+            }
     }
     
     private func doubleTapToZoom(in size: CGSize) -> some Gesture {
@@ -136,5 +180,5 @@ struct EmojiArtDocumentView: View {
     
     // MARK: -Drawing constants
     
-    private let defaultEmojiSize: CGFloat = 40
+    private let defaultEmojiSize: CGFloat = 80
 }

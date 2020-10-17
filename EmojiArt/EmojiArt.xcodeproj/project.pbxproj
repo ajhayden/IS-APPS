@@ -18,6 +18,7 @@
 		3FD398222535ED29006E7195 /* EmojiArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398212535ED29006E7195 /* EmojiArt.swift */; };
 		3FD398262538973B006E7195 /* OptionalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398252538973B006E7195 /* OptionalImage.swift */; };
 		3FD3982825389B5F006E7195 /* AnimatableSystemFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3982725389B5F006E7195 /* AnimatableSystemFontModifier.swift */; };
+		3FD3982A253A6634006E7195 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3FD39829253A6634006E7195 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		3FD398212535ED29006E7195 /* EmojiArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArt.swift; sourceTree = "<group>"; };
 		3FD398252538973B006E7195 /* OptionalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalImage.swift; sourceTree = "<group>"; };
 		3FD3982725389B5F006E7195 /* AnimatableSystemFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableSystemFontModifier.swift; sourceTree = "<group>"; };
+		3FD39829253A6634006E7195 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				3FD3982725389B5F006E7195 /* AnimatableSystemFontModifier.swift */,
 				3FD398252538973B006E7195 /* OptionalImage.swift */,
+				3FD39829253A6634006E7195 /* README.md */,
 				3FD397EF252F5D88006E7195 /* EmojiArt */,
 				3FD39801252F5D8F006E7195 /* EmojiArtTests */,
 				3FD3980C252F5D8F006E7195 /* EmojiArtUITests */,
@@ -107,9 +110,9 @@
 		3FD397EF252F5D88006E7195 /* EmojiArt */ = {
 			isa = PBXGroup;
 			children = (
-				3FD3981F2535ED06006E7195 /* View */,
-				3FD398202535ED10006E7195 /* ViewModel */,
 				3FD398232535ED2F006E7195 /* Model */,
+				3FD398202535ED10006E7195 /* ViewModel */,
+				3FD3981F2535ED06006E7195 /* View */,
 				3FD398242535ED3D006E7195 /* Utility */,
 				3FD397F9252F5D8F006E7195 /* Info.plist */,
 				3FD397F4252F5D8F006E7195 /* Assets.xcassets */,
@@ -280,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD3982A253A6634006E7195 /* README.md in Resources */,
 				3FD397F8252F5D8F006E7195 /* Preview Assets.xcassets in Resources */,
 				3FD397F5252F5D8F006E7195 /* Assets.xcassets in Resources */,
 			);
