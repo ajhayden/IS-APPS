@@ -1,0 +1,3 @@
+Learning Experience:
+
+I learned a lot of usefull things while doing this assignment. I learned that you can different types of gestures like dragging gestures, tapping gestures, or even double tapping gestures. Sometimes I take for granted all the different gestures that I use when using my smart phone, and it really interesting having the opportunity to code them. I also learned that a lot more about sets. I haven't actually ever used this data structure before, but I learned how they work in Swift. I learned how sets keep one value and does not store duplicate values, which can be extremely useful. I also learned that it matters what order you put gestures so that you can make sure they run in the way that you want them to.

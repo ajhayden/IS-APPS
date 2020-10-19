@@ -29,7 +29,6 @@ struct EmojiArtDocumentView: View {
                 
                 for emoji in emojisSelectedSet {
                     self.document.move(emoji: emoji, by: selectedEmojisSteadyStatePanOffset)
-                    emojisSelectedSet.remove(emoji)
                 }
                 selectedEmojisSteadyStatePanOffset = .zero
             }
@@ -94,20 +93,18 @@ struct EmojiArtDocumentView: View {
                     .gesture(doubleTapToZoom(in: geometry.size))
                         
                     ForEach(self.document.emojis) { emoji in
-                        let emojiSelected = emojisSelectedSet.contains(emoji)
                         Text(emoji.text)
-                            .border(Color.blue, width: emojiSelected ? 3 : 0)
+                            .border(Color.blue, width: emojisSelectedSet.contains(matching: emoji) ? 4 : 0)
+                            .cornerRadius(5)
                             .font(animatableWithSize: emoji.fontSize * zoomScale)
                             .position(self.position(for: emoji, in: geometry.size))
                             .gesture(selectedEmojisPanGesture)
-                            .offset(emojiSelected ? selectedEmojisPanOffset : .zero)
                             .onTapGesture {
-                                if emojiSelected {
-                                    emojisSelectedSet.remove(emoji)
+                                if let index = emojisSelectedSet.firstIndex(matching: emoji) {
+                                    emojisSelectedSet.remove(emojisSelectedSet[index])
                                 } else {
                                     emojisSelectedSet.insert(emoji)
                                 }
-                                print(emojisSelectedSet)
                             }
                     }
                 }
@@ -164,6 +161,10 @@ struct EmojiArtDocumentView: View {
         location = CGPoint(x: location.x * zoomScale, y: location.y * zoomScale)
         location = CGPoint(x: location.x + size.width / 2, y: location.y + size.height / 2)
         location = CGPoint(x: location.x + panOffset.width, y: location.y + panOffset.height)
+        
+        if emojisSelectedSet.contains(matching: emoji) {
+            location = CGPoint(x: location.x + selectedEmojisPanOffset.width, y: location.y + selectedEmojisPanOffset.height)
+        }
         
         return location
     }
