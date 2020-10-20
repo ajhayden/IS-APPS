@@ -20,7 +20,11 @@ extension Collection where Element: Identifiable {
 
 extension Set where Element: Identifiable {
     mutating func toggle(matching element: Element) {
-        print("Something")
+        if let index = firstIndex(matching: element) {
+            remove(at: index)
+        } else {
+            insert(element)
+        }
     }
 }
 
