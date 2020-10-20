@@ -26,9 +26,9 @@ struct EmojiArtDocumentView: View {
             }
             .onEnded { finalDragGestureValue in
                 selectedEmojisSteadyStatePanOffset = selectedEmojisSteadyStatePanOffset + (finalDragGestureValue.translation / zoomScale)
-                
+                // May Need Work: divide by zoomscale
                 for emoji in emojisSelectedSet {
-                    self.document.move(emoji: emoji, by: selectedEmojisSteadyStatePanOffset)
+                    document.move(emoji: emoji, by: selectedEmojisSteadyStatePanOffset / zoomScale)
                 }
                 selectedEmojisSteadyStatePanOffset = .zero
             }
@@ -91,13 +91,15 @@ struct EmojiArtDocumentView: View {
                             .offset(panOffset)
                     )
                     .gesture(doubleTapToZoom(in: geometry.size))
+                    // Put on the doubleTapToZoom
+                    // .exclusively(before: singleTapToDeselect(in:geometry.size))
                         
-                    ForEach(self.document.emojis) { emoji in
+                    ForEach(document.emojis) { emoji in
                         Text(emoji.text)
                             .border(Color.blue, width: emojisSelectedSet.contains(matching: emoji) ? 4 : 0)
                             .cornerRadius(5)
                             .font(animatableWithSize: emoji.fontSize * zoomScale)
-                            .position(self.position(for: emoji, in: geometry.size))
+                            .position(position(for: emoji, in: geometry.size))
                             .gesture(selectedEmojisPanGesture)
                             .onTapGesture {
                                 if let index = emojisSelectedSet.firstIndex(matching: emoji) {
@@ -144,12 +146,12 @@ struct EmojiArtDocumentView: View {
     
     private func drop(providers: [NSItemProvider], location: CGPoint) -> Bool {
         var found = providers.loadFirstObject(ofType: URL.self) { url in
-            self.document.setBackground(url: url)
+            document.setBackground(url: url)
         }
         
         if !found {
             found = providers.loadObjects(ofType: String.self) { string in
-                self.document.add(emoji: string, at: location, size: defaultEmojiSize)
+                document.add(emoji: string, at: location, size: defaultEmojiSize)
             }
         }
         return found

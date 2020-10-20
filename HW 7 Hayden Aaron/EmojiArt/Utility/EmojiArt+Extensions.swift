@@ -18,6 +18,12 @@ extension Collection where Element: Identifiable {
     }
 }
 
+extension Set where Element: Identifiable {
+    mutating func toggle(matching element: Element) {
+        print("Something")
+    }
+}
+
 extension Data {
     var utf8: String? { String(data: self, encoding: .utf8 ) }
 }
