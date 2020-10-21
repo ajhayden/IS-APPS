@@ -66,6 +66,10 @@ class EmojiArtDocument: ObservableObject {
             emojiArt.emojis[index].size = Int((CGFloat(emojiArt.emojis[index].size) * scale).rounded(.toNearestOrEven))
         }
     }
+    
+    func delete(emoji: EmojiArt.Emoji) {
+        emojiArt.removeEmoji(emoji: emoji)
+    }
 
     func setBackground(url: URL?) {
         emojiArt.backgroundUrl = url?.imageURL

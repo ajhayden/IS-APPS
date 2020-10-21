@@ -62,18 +62,40 @@ struct EmojiArtDocumentView: View {
 
     @State private var steadyStateZoomScale: CGFloat = 1.0
     @GestureState private var gestureZoomScale: CGFloat = 1.0
+    
+    @State private var steadyStateZoomScaleForEmojis: CGFloat = 1.0
+    @GestureState private var gestureZoomScaleForEmojis: CGFloat = 1.0
 
     private var zoomScale: CGFloat {
         steadyStateZoomScale * gestureZoomScale
+    }
+    
+    private var zoomScaleForEmojis: CGFloat {
+        steadyStateZoomScaleForEmojis * gestureZoomScaleForEmojis
     }
 
     private var zoomGesture: some Gesture {
         MagnificationGesture()
             .updating($gestureZoomScale) { latestGestureScale, gestureZoomScale, transaction in
-                gestureZoomScale = latestGestureScale
+                if selectedEmojis.isEmpty {
+                    gestureZoomScale = latestGestureScale
+                }
+            }
+            .updating($gestureZoomScaleForEmojis) { latestGestureScale, gestureZoomScaleForEmojis, transaction in
+                if !selectedEmojis.isEmpty {
+                    gestureZoomScaleForEmojis = latestGestureScale
+                }
             }
             .onEnded { finalGestureScale in
-                steadyStateZoomScale *= finalGestureScale
+                if selectedEmojis.isEmpty {
+                    steadyStateZoomScale *= finalGestureScale
+                } else {
+                    steadyStateZoomScaleForEmojis *= finalGestureScale
+                    selectedEmojis.forEach { emoji in
+                        document.scale(emoji: emoji, by: steadyStateZoomScaleForEmojis)
+                    }
+                    steadyStateZoomScaleForEmojis = 1.0
+                }
             }
     }
 
@@ -101,7 +123,6 @@ struct EmojiArtDocumentView: View {
                             .scaleEffect(zoomScale)
                             .offset(panOffset)
                     )
-
                     if isLoading {
 //                        Image(systemName: "hourglass").imageScale(.large).spinning()
                         ProgressView()
@@ -114,12 +135,14 @@ struct EmojiArtDocumentView: View {
                                     .frame(width: selectionBoxSize(for: emoji), height: selectionBoxSize(for: emoji))
                                 Text(emoji.text)
                             }
-                            .font(animatableWithSize: emoji.fontSize * zoomScale)
+                            .font(animatableWithSize: selectedEmojis.contains(matching: emoji)
+                                  ? emoji.fontSize * zoomScale * zoomScaleForEmojis : emoji.fontSize * zoomScale
+                            )
                             .position(position(for: emoji, in: geometry.size))
+                            .gesture(tripleTapToDelete(emoji: emoji))
                             .gesture(
-                                selectionDragGesture.exclusively(
-                                    before: singleTapToSelect(emoji)
-                                )
+                                selectionDragGesture
+                                    .exclusively(before: singleTapToSelect(emoji))
                             )
                         }
                     }
@@ -151,6 +174,15 @@ struct EmojiArtDocumentView: View {
     }
 
     // MARK: - Private helpers
+    
+    private func tripleTapToDelete(emoji: EmojiArt.Emoji) -> some Gesture {
+        TapGesture(count: 3)
+            .onEnded {
+                withAnimation {
+                    document.delete(emoji: emoji)
+                }
+            }
+    }
 
     private func clearSelection() {
         selectedEmojis.removeAll()
@@ -194,7 +226,7 @@ struct EmojiArtDocumentView: View {
     }
 
     private func selectionBoxSize(for emoji: EmojiArt.Emoji) -> CGFloat {
-        emoji.fontSize * selectionBoxSizeFactor * zoomScale
+        emoji.fontSize * selectionBoxSizeFactor * zoomScale * zoomScaleForEmojis
     }
 
     private func singleTapToDeselect() -> some Gesture {
