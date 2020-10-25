@@ -12,13 +12,21 @@ struct EmojiArtDocumentView: View {
     // MARK: - Properties
 
     @ObservedObject var document: EmojiArtDocument
-
+    
+    @State private var chosenPalette: String
+    
     @State private var selectedEmojis = Set<EmojiArt.Emoji>()
 
     private var isLoading: Bool {
         document.backgroundUrl != nil && document.backgroundImage == nil
     }
-
+    // MARK: Initialization
+    
+    init(document: EmojiArtDocument) {
+        self.document = document
+        _chosenPalette = State(wrappedValue: document.defaultPaletteName)
+    }
+    
     // MARK: - Drag selection
 
     @GestureState private var gestureSelectionOffset: CGSize = .zero
@@ -96,11 +104,11 @@ struct EmojiArtDocumentView: View {
     var body: some View {
         VStack {
             HStack {
-                PaletteChooser()
+                PaletteChooser(document: document, chosenPalette: $chosenPalette)
                 
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(EmojiArtDocument.palette.map { String($0) }, id: \.self) { emoji in
+                        ForEach((document.palettes[chosenPalette] ?? "").map { String($0) }, id: \.self) { emoji in
                             Text(emoji)
                                 .font(Font.system(size: defaultEmojiSize))
                                 .onDrag {

@@ -14,8 +14,6 @@ class EmojiArtDocument: ObservableObject {
 
     private static let untitled = "EmojiArtDocument.untitled"
 
-    static let palette = "🐝🍎🚴‍♀️🎈☀️☁️"
-
     // MARK: - Properties
 
     @Published private var emojiArt = EmojiArt()
