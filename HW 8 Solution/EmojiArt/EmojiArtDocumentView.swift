@@ -11,20 +11,16 @@ struct EmojiArtDocumentView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var document: EmojiArtDocument
+    @EnvironmentObject var document: EmojiArtDocument
     
-    @State private var chosenPalette: String
-    
+    @State private var chosenPalette: String = ""
+    @State private var confirmBackgroundPaste = false
+    @State private var explainBackgroundPaste = false
     @State private var selectedEmojis = Set<EmojiArt.Emoji>()
+    @State private var showPaletteEditor = false
 
     private var isLoading: Bool {
         document.backgroundUrl != nil && document.backgroundImage == nil
-    }
-    // MARK: Initialization
-    
-    init(document: EmojiArtDocument) {
-        self.document = document
-        _chosenPalette = State(wrappedValue: document.defaultPaletteName)
     }
     
     // MARK: - Drag selection
@@ -49,11 +45,11 @@ struct EmojiArtDocumentView: View {
 
     // MARK: - Pan document
 
-    @State private var steadyStatePanOffset: CGSize = .zero
+
     @GestureState private var gesturePanOffset: CGSize = .zero
 
     private var panOffset: CGSize {
-        (steadyStatePanOffset + gesturePanOffset) * zoomScale
+        (document.steadyStatePanOffset + gesturePanOffset) * zoomScale
     }
 
     private var panGesture: some Gesture {
@@ -62,13 +58,12 @@ struct EmojiArtDocumentView: View {
                 gesturePanOffset = latestDragGestureValue.translation / zoomScale
             }
             .onEnded { finalDragGestureValue in
-                steadyStatePanOffset = steadyStatePanOffset + (finalDragGestureValue.translation / zoomScale)
+                document.steadyStatePanOffset = document.steadyStatePanOffset + (finalDragGestureValue.translation / zoomScale)
             }
     }
 
     // MARK: - Zoom document
-
-    @State private var steadyStateZoomScale: CGFloat = 1.0
+    
     @GestureState private var gestureZoomScale: CGFloat = 1.0
 
     private var selectionZoomScale: CGFloat {
@@ -79,8 +74,8 @@ struct EmojiArtDocumentView: View {
 
     private var zoomScale: CGFloat {
         selectedEmojis.count > 0
-            ? steadyStateZoomScale
-            : steadyStateZoomScale * gestureZoomScale
+            ? document.steadyStateZoomScale
+            : document.steadyStateZoomScale * gestureZoomScale
     }
 
     private var zoomGesture: some Gesture {
@@ -94,7 +89,7 @@ struct EmojiArtDocumentView: View {
                         document.scale(emoji: emoji, by: finalGestureScale)
                     }
                 } else {
-                    steadyStateZoomScale *= finalGestureScale
+                    document.steadyStateZoomScale *= finalGestureScale
                 }
             }
     }
@@ -104,7 +99,18 @@ struct EmojiArtDocumentView: View {
     var body: some View {
         VStack {
             HStack {
-                PaletteChooser(document: document, chosenPalette: $chosenPalette)
+                PaletteChooser(chosenPalette: $chosenPalette)
+                
+                Button(action: {
+                    showPaletteEditor = true
+                }) {
+                    Image(systemName: "pencil").imageScale(.large)
+                }
+                .popover(isPresented: $showPaletteEditor) {
+                    PaletteEditor(chosenPalette: $chosenPalette, isShowing: $showPaletteEditor)
+                        .frame(minWidth: 300, minHeight: 500)
+                }
+                .environmentObject(document)
                 
                 ScrollView(.horizontal) {
                     HStack {
@@ -166,7 +172,7 @@ struct EmojiArtDocumentView: View {
                         .exclusively(before: zoomGesture)
                 )
                 .edgesIgnoringSafeArea([.horizontal, .bottom])
-                .onReceive(document.$backgroundImage) { image in
+                .onReceive(document.$backgroundImage.dropFirst()) { image in
                     withAnimation {
                         zoomToFit(image, in: geometry.size)
                     }
@@ -182,6 +188,35 @@ struct EmojiArtDocumentView: View {
                 }
             }
             .zIndex(-1)
+            .navigationBarItems(trailing: Button(action: {
+                if UIPasteboard.general.url != nil {
+                    confirmBackgroundPaste = true
+                } else {
+                    explainBackgroundPaste = true
+                }
+            }, label: {
+                Image(systemName: "doc.on.clipboard").imageScale(.large)
+                    .alert(isPresented: $explainBackgroundPaste) {
+                        Alert(
+                            title: Text("Paste Background"),
+                            message: Text("Copy the URL of an image to the clipboard and tap this button to make it the background of your document"),
+                            dismissButton:.default(Text("OK"))
+                        )
+                    }
+            }))
+            .alert(isPresented: $confirmBackgroundPaste) {
+                Alert(
+                    title: Text("Paste Background"),
+                    message: Text("Replace your background with \(UIPasteboard.general.url?.absoluteString ?? "nothing")?"),
+                    primaryButton: .default(Text("OK")) {
+                        document.setBackground(url: UIPasteboard.general.url)
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+            .onAppear {
+                chosenPalette = document.defaultPaletteName
+            }
         }
     }
 
@@ -271,8 +306,8 @@ struct EmojiArtDocumentView: View {
             let horizontalZoom = size.width / image.size.width
             let verticalZoom = size.height / image.size.height
 
-            steadyStateZoomScale = min(horizontalZoom, verticalZoom)
-            steadyStatePanOffset = .zero
+            document.steadyStateZoomScale = min(horizontalZoom, verticalZoom)
+            document.steadyStatePanOffset = .zero
         }
     }
 
@@ -284,6 +319,6 @@ struct EmojiArtDocumentView: View {
 
 struct EmojiArtDocumentView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiArtDocumentView(document: EmojiArtDocument())
+        EmojiArtDocumentView().environmentObject(EmojiArtDocument())
     }
 }

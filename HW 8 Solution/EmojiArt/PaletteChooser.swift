@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PaletteChooser: View {
     
-    @ObservedObject var document: EmojiArtDocument
+    @EnvironmentObject var document: EmojiArtDocument
     
     @Binding var chosenPalette: String
     
@@ -32,6 +32,6 @@ struct PaletteChooser: View {
 
 struct PaletteChooser_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteChooser(document: EmojiArtDocument(), chosenPalette: Binding.constant("Default Palette"))
+        PaletteChooser(chosenPalette: .constant("Default Palette")).environmentObject(EmojiArtDocument())
     }
 }
