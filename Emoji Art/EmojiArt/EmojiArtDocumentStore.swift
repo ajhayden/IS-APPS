@@ -29,14 +29,28 @@ class EmojiArtDocumentStore: ObservableObject {
 
     // MARK: - Initialization
 
+    // You need to edit this init function
     init(named name: String = EmojiArtDocumentStore.defaultName) {
         self.name = name
         let defaultsKey = "EmojiArtDocumentStore.\(name)"
 
         documentNames = Dictionary(fromPropertyList: UserDefaults.standard.object(forKey: defaultsKey))
+        print(documentNames)
         autosave = $documentNames.sink { names in
             UserDefaults.standard.set(names.asPropertyList, forKey: defaultsKey)
         }
+    }
+    
+    private func listFiles() -> Array<URL> {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            return fileURLs
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+        }
+        return []
     }
 
     // MARK: - Computed properties
