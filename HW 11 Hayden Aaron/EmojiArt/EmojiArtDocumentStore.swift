@@ -35,7 +35,6 @@ class EmojiArtDocumentStore: ObservableObject {
         let defaultsKey = "EmojiArtDocumentStore.\(name)"
 
         documentNames = Dictionary(fromPropertyList: UserDefaults.standard.object(forKey: defaultsKey))
-        print(documentNames)
         autosave = $documentNames.sink { names in
             UserDefaults.standard.set(names.asPropertyList, forKey: defaultsKey)
         }

@@ -44,6 +44,18 @@ extension URL {
         }
 
         return self.baseURL ?? self
+        
+        
+        }
+    
+    static func documentUrl(for filename: String) -> URL? {
+        try? FileManager.default.url(
+            for: FileManager.SearchPathDirectory.documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        )
+        .appendingPathComponent(filename)
     }
 }
 

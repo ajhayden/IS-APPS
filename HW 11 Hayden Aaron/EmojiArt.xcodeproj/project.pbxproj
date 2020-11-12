@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F1267E0255CD1FB00719A0D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3F1267DF255CD1FB00719A0D /* README.md */; };
+		3F1267E2255D8B9300719A0D /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1267E1255D8B9300719A0D /* Extras.swift */; };
 		3F3E2D59252F5D8600E04AFE /* EmojiArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E2D58252F5D8600E04AFE /* EmojiArtApp.swift */; };
 		3F3E2D5B252F5D8600E04AFE /* EmojiArtDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E2D5A252F5D8600E04AFE /* EmojiArtDocumentView.swift */; };
 		3F3E2D5D252F5D8800E04AFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E2D5C252F5D8800E04AFE /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		3F1267DF255CD1FB00719A0D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3F1267E1255D8B9300719A0D /* Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
 		3F3E2D55252F5D8600E04AFE /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3E2D58252F5D8600E04AFE /* EmojiArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtApp.swift; sourceTree = "<group>"; };
 		3F3E2D5A252F5D8600E04AFE /* EmojiArtDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				3FD398312548620E006E7195 /* EditableText.swift */,
 				3FD3983B2548FD6F006E7195 /* EmojiArtDocumentStore.swift */,
 				3F3E2D70252F621600E04AFE /* EmojiArt+Extensions.swift */,
+				3F1267E1255D8B9300719A0D /* Extras.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FD398322548620E006E7195 /* EditableText.swift in Sources */,
+				3F1267E2255D8B9300719A0D /* Extras.swift in Sources */,
 				3F5D944B25389B4D00C2AC98 /* AnimatableSystemFontModifier.swift in Sources */,
 				3F3E2D5B252F5D8600E04AFE /* EmojiArtDocumentView.swift in Sources */,
 				3F3E2D69252F5DC500E04AFE /* EmojiArtDocument.swift in Sources */,
