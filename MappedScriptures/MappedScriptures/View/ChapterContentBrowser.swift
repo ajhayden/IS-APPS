@@ -11,14 +11,17 @@ struct ChapterContentBrowser: View {
     
     @ObservedObject var viewModel: ViewModel
     
+    init(viewModel: ViewModel, chapter: Int) {
+        self.viewModel = viewModel
+        viewModel.navigateToChapter(chapter: chapter)
+    }
+    
     var book: Book {
         GeoDatabase.shared.bookForId(viewModel.bookId)
     }
     
     var body: some View {
         VStack {
-            MapView(viewModel: viewModel)
-                .frame(height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             WebView(html: viewModel.html, request: nil)
                 .injectNavigationHandler { geoPlaceId in
                     print("User wants to highlight \(geoPlaceId)")
@@ -40,7 +43,7 @@ struct ChapterContentBrowser: View {
 struct ChapterContentBrowser_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChapterContentBrowser(viewModel: viewModel())
+            ChapterContentBrowser(viewModel: viewModel(), chapter: 1)
         }
     }
     

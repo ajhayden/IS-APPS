@@ -7,62 +7,68 @@
 
 import SwiftUI
 
-struct MapScripturesView: View {
+struct VolumeBrowser: View {
+    
+    @ObservedObject var viewModel = ViewModel()
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(GeoDatabase.shared.volumes()) { volume in
                     NavigationLink(volume.citeFull, destination:
-                                    ScriptureBrowser(bookId: volume.id))
+                                    BookListBrowser(viewModel: viewModel, volumeId: volume.id))
                 }
             }
             .navigationTitle("Standard Works")
+            
+            MapView(viewModel: viewModel)
         }
     }
 }
 
-struct MapScripturesView_Previews: PreviewProvider {
+struct VolumeBrowser_Previews: PreviewProvider {
     static var previews: some View {
-        MapScripturesView()
+        VolumeBrowser()
     }
 }
 
-struct ScriptureBrowser: View {
-    var bookId: Int?
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(GeoDatabase.shared.booksForParentId(bookId ?? 1)) { book in
-                    NavigationLink(book.citeFull, destination:
-                                    ChapterBrowser(bookId: book.id))
-                }
-            }
-            .navigationTitle(GeoDatabase.shared.bookForId(bookId ?? 1).citeFull)
-        }
-    }
-}
-
-struct ChapterBrowser: View {
-    var bookId: Int?
-    var body: some View {
-        NavigationView {
-            List {
-                Text("Book Chapters: \(GeoDatabase.shared.bookForId(bookId ?? 1).numChapters ?? 1)")
-                ForEach(1...10, id: \.self) { chapter in
-                    NavigationLink("Chapter \(chapter)", destination:
-                                    ChapterContentBrowser(viewModel: viewModel(bookId: bookId ?? 1, chapter: chapter)))
-                }
-            }
-            .navigationTitle(GeoDatabase.shared.bookForId(bookId ?? 1).citeFull)
-        }
+struct BookListBrowser: View {
+    @ObservedObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel, volumeId: Int) {
+        self.viewModel = viewModel
+        viewModel.volumeId = volumeId
     }
     
-    private func viewModel(bookId: Int, chapter: Int) -> ViewModel {
-        let viewModel = ViewModel()
-        
-        viewModel.navigateToChapter(bookId: bookId, chapter: chapter)
-        
-        return viewModel
+    // Write a decion for more than one chapter
+    
+    var body: some View {
+        List {
+            ForEach(GeoDatabase.shared.booksForParentId(viewModel.bookId)) { book in
+                NavigationLink(book.citeFull, destination:
+                                ChapterListBrowser(viewModel: viewModel, bookId: book.id))
+            }
+        }
+        .navigationTitle(GeoDatabase.shared.bookForId(viewModel.bookId).citeFull)
+    }
+}
+
+struct ChapterListBrowser: View {
+    @ObservedObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel, bookId: Int) {
+        self.viewModel = viewModel
+        viewModel.bookId = bookId
+    }
+    
+    var body: some View {
+        List {
+            ForEach(1...viewModel.numChapters, id: \.self) { chapter in
+                NavigationLink("Chapter \(chapter)", destination:
+                                ChapterContentBrowser(viewModel: viewModel, chapter: chapter))
+            }
+        }
+        .navigationTitle(GeoDatabase.shared.bookForId(viewModel.bookId).citeFull)
+
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import GRDB
 
-struct GeoPlace : TableRecord, FetchableRecord, Identifiable {
+struct GeoPlace : TableRecord, FetchableRecord, Identifiable, Hashable {
 
     // MARK: - Constants
 

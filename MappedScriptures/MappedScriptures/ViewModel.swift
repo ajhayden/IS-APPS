@@ -9,10 +9,21 @@ import Foundation
 
 class ViewModel: ObservableObject, GeoPlaceCollector {
     
-    @Published var bookId = 0
-    @Published var chapter = 0
+    @Published var volumeId = 0
+    @Published var bookId = 0 {
+        didSet {
+            numChapters = GeoDatabase.shared.bookForId(bookId).numChapters ?? 0
+        }
+    }
+    @Published var chapter = 0 {
+        didSet {
+            html = ScriptureRenderer.shared.htmlForBookId(bookId, chapter: chapter)
+        }
+    }
     @Published var geoPlaces = [GeoPlace]()
     @Published var html = ""
+    @Published var numChapters = 0
+    
    
     // MARK: - Initialization
     
@@ -25,8 +36,10 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
     func navigateToChapter(bookId: Int, chapter: Int) {
         self.bookId = bookId
         self.chapter = chapter
-        
-        html = ScriptureRenderer.shared.htmlForBookId(bookId, chapter: chapter)
+    }
+    
+    func navigateToChapter(chapter: Int) {
+        self.chapter = chapter
     }
     
     // MARK: - GeoPlaceCollector
@@ -35,12 +48,16 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
         if let places = places {
             geoPlaces = places
             
+//            for place in geoPlaces {
+//
+//            }
+            
             // NEEDS WORK: Process this and remove any duplicates
             geoPlaces.forEach() { place in
                 print(place.placename)
             }
         }
     }
-    
-    
+
 }
+
