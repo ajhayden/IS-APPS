@@ -10,11 +10,8 @@ import SwiftUI
 struct ChapterContentBrowser: View {
     
     @ObservedObject var viewModel: ViewModel
-    
-    init(viewModel: ViewModel, chapter: Int) {
-        self.viewModel = viewModel
-        viewModel.navigateToChapter(chapter: chapter)
-    }
+    var chapter: Int
+    @State private var displayModalDetailView = false
     
     var book: Book {
         GeoDatabase.shared.bookForId(viewModel.bookId)
@@ -25,9 +22,25 @@ struct ChapterContentBrowser: View {
             WebView(html: viewModel.html, request: nil)
                 .injectNavigationHandler { geoPlaceId in
                     print("User wants to highlight \(geoPlaceId)")
-                    // NEEDS WORK: maybe goes to the ViewModel, viewModel to feed to map view some how
+                    
+                    if !viewModel.isDetailVisable {
+                        displayModalDetailView = true
+                    }
+
                 }
-                .navigationTitle(title())
+                .navigationBarItems(trailing: Group {
+                    if !viewModel.isDetailVisable {
+                        Button("Map") {
+                            displayModalDetailView = true
+                        }
+                    }
+                })
+                .onAppear {
+                    viewModel.chapter = chapter
+                }
+                .sheet(isPresented: $displayModalDetailView) {
+                    MapView(viewModel: viewModel)
+                }
         }
     }
     

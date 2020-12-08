@@ -24,6 +24,11 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
     @Published var html = ""
     @Published var numChapters = 0
     
+    static var latitude = 31.7683
+    static var longitude = 35.2137
+    
+    var isDetailVisable = false
+    
    
     // MARK: - Initialization
     
@@ -45,17 +50,28 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
     // MARK: - GeoPlaceCollector
     
     func setGeocodedPlaces(_ places: [GeoPlace]?) {
+        var uniqueGeoPlaces = Array<GeoPlace>()
         if let places = places {
             geoPlaces = places
             
-//            for place in geoPlaces {
-//
-//            }
-            
-            // NEEDS WORK: Process this and remove any duplicates
-            geoPlaces.forEach() { place in
-                print(place.placename)
+            for place in geoPlaces {
+                if !uniqueGeoPlaces.contains(place) {
+                    uniqueGeoPlaces.append(place)
+                }
             }
+            
+            var counter = 0
+            var latitudeSum = 0.0
+            var longitudeSum = 0.0
+            
+            uniqueGeoPlaces.forEach() { place in
+                counter += 1
+                latitudeSum += place.latitude
+                longitudeSum += place.longitude
+            }
+            
+            ViewModel.latitude = latitudeSum / Double(counter)
+            ViewModel.longitude = longitudeSum / Double(counter)
         }
     }
 
