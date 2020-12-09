@@ -14,15 +14,9 @@ struct MapView: View {
     // Maybe the whole thing can go into the viewModel
     
     @ObservedObject var viewModel: ViewModel
-
-    @State private var mapRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: ViewModel.latitude, longitude: ViewModel.longitude),
-        span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2)
-    )
     
     var body: some View {
-    GeometryReader { geometry in
-            Map(coordinateRegion: $mapRegion,
+        Map(coordinateRegion: $viewModel.mapRegion,
                 annotationItems: viewModel.geoPlaces) { geoPlace in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(
                                 latitude: geoPlace.latitude,
@@ -43,9 +37,8 @@ struct MapView: View {
                 
                 map.mapType = .satellite
                 map.showsScale = true
-                viewModel.isDetailVisable = geometry.frame(in: .global).maxY > 0
+//                viewModel.isDetailVisable = geometry.frame(in: .global).maxY > 0
             }
-        }
     }
 }
 
@@ -62,3 +55,4 @@ struct MapView_Previews: PreviewProvider {
         return viewModel
     }
 }
+

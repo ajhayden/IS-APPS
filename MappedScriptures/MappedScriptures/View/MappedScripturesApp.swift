@@ -11,7 +11,7 @@ import SwiftUI
 struct MappedScripturesApp: App {
     var body: some Scene {
         WindowGroup {
-            VolumeBrowser()
+            MapScripturesView()
         }
     }
 }

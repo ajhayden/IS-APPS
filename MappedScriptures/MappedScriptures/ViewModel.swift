@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 class ViewModel: ObservableObject, GeoPlaceCollector {
     
@@ -24,8 +25,7 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
     @Published var html = ""
     @Published var numChapters = 0
     
-    static var latitude = 31.7683
-    static var longitude = 35.2137
+    @Published var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137), span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
     
     var isDetailVisable = false
     
@@ -60,18 +60,45 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
                 }
             }
             
-            var counter = 0
-            var latitudeSum = 0.0
-            var longitudeSum = 0.0
+            var minLatitude = 1000000000.0
+            var maxLatitude = 0.0
+            var minLongitude = 1000000000.0
+            var maxLongitude = 0.0
             
             uniqueGeoPlaces.forEach() { place in
-                counter += 1
-                latitudeSum += place.latitude
-                longitudeSum += place.longitude
+                print(place.placename)
+                if place.latitude > maxLatitude {
+                    maxLatitude = place.latitude
+                }
+                if place.latitude < minLatitude {
+                    minLatitude = place.latitude
+                }
+                if place.longitude > maxLongitude {
+                    maxLongitude = place.longitude
+                }
+                if place.longitude < minLongitude {
+                    minLongitude = place.longitude
+                }
+            }
+            print(maxLatitude)
+            print(minLatitude)
+            print(maxLongitude)
+            print(minLongitude)
+            
+            if minLatitude == 1000000000.0 {
+                self.mapRegion.center.latitude = 31.7683
+                self.mapRegion.center.longitude = 35.2137
+                self.mapRegion.span.latitudeDelta = 2
+                self.mapRegion.span.longitudeDelta = 2
+            } else {
+                self.mapRegion.center.latitude = (maxLatitude + minLatitude) / 2
+                self.mapRegion.center.longitude = (maxLongitude + minLongitude) / 2
+                self.mapRegion.span.latitudeDelta = maxLatitude - minLatitude
+                self.mapRegion.span.longitudeDelta = maxLongitude - minLongitude
+
             }
             
-            ViewModel.latitude = latitudeSum / Double(counter)
-            ViewModel.longitude = longitudeSum / Double(counter)
+            geoPlaces = uniqueGeoPlaces
         }
     }
 

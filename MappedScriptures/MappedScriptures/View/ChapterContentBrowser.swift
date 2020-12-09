@@ -22,6 +22,10 @@ struct ChapterContentBrowser: View {
             WebView(html: viewModel.html, request: nil)
                 .injectNavigationHandler { geoPlaceId in
                     print("User wants to highlight \(geoPlaceId)")
+                    viewModel.mapRegion.center.latitude = GeoDatabase.shared.geoPlaceForId(geoPlaceId)?.latitude ?? 0.0
+                    viewModel.mapRegion.center.longitude = GeoDatabase.shared.geoPlaceForId(geoPlaceId)?.longitude ?? 0.0
+                    viewModel.mapRegion.span.latitudeDelta = 0.15
+                    viewModel.mapRegion.span.longitudeDelta = 0.15
                     
                     if !viewModel.isDetailVisable {
                         displayModalDetailView = true
@@ -39,7 +43,13 @@ struct ChapterContentBrowser: View {
                     viewModel.chapter = chapter
                 }
                 .sheet(isPresented: $displayModalDetailView) {
-                    MapView(viewModel: viewModel)
+                    NavigationView {
+                        MapView(viewModel: viewModel)
+                            .navigationBarTitle("\(GeoDatabase.shared.bookForId(viewModel.bookId).fullName): \(viewModel.chapter)")
+                            .navigationBarItems(trailing: Button("Done", action: {
+                                displayModalDetailView = false
+                            }))
+                    }
                 }
         }
     }
