@@ -10,14 +10,12 @@ import MapKit
 
 struct MapView: View {
     
-    // NEEDS WORK: Compute what the points are for the map. Center should be the center of the rectangle that holds all of the pins
-    // Maybe the whole thing can go into the viewModel
-    
     @ObservedObject var viewModel: ViewModel
+//    @State var isShowingPopover = false
     
     var body: some View {
         Map(coordinateRegion: $viewModel.mapRegion,
-                annotationItems: viewModel.geoPlaces) { geoPlace in
+            annotationItems: viewModel.geoPlaces) { geoPlace in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(
                                 latitude: geoPlace.latitude,
                                 longitude: geoPlace.longitude),
@@ -27,17 +25,22 @@ struct MapView: View {
                         .foregroundColor(Color(red: 0.75, green: 0.1, blue:0.1))
                         .shadow(radius: 1, x: 1, y: 1)
                         .onTapGesture {
-                            print("Selected \(geoPlace.placename)")
+//                            isShowingPopover = true
+                            print("Selected: \(geoPlace.placename)")
                         }
+//                        .popover(isPresented: $isShowingPopover) {
+//                            Text("Hi from a popover")
+//                                .padding()
+//                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        }
                 }
             }
             .edgesIgnoringSafeArea(.all)
-            .onAppear() {
+            .onAppear {
                 let map = MKMapView.appearance()
                 
                 map.mapType = .satellite
                 map.showsScale = true
-//                viewModel.isDetailVisable = geometry.frame(in: .global).maxY > 0
             }
     }
 }

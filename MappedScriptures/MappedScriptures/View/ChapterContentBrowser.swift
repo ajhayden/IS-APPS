@@ -26,6 +26,7 @@ struct ChapterContentBrowser: View {
                     viewModel.mapRegion.center.longitude = GeoDatabase.shared.geoPlaceForId(geoPlaceId)?.longitude ?? 0.0
                     viewModel.mapRegion.span.latitudeDelta = 0.15
                     viewModel.mapRegion.span.longitudeDelta = 0.15
+                    viewModel.currentLocation = geoPlaceId
                     
                     if !viewModel.isDetailVisable {
                         displayModalDetailView = true
@@ -44,8 +45,9 @@ struct ChapterContentBrowser: View {
                 }
                 .sheet(isPresented: $displayModalDetailView) {
                     NavigationView {
-                        MapView(viewModel: viewModel)
-                            .navigationBarTitle("\(GeoDatabase.shared.bookForId(viewModel.bookId).fullName): \(viewModel.chapter)")
+                        DetailMapView(viewModel: viewModel)
+                            .navigationBarTitle(viewModel.currentLocation > 0 ? "\(GeoDatabase.shared.geoPlaceForId(viewModel.currentLocation)!.placename)"
+                                : "\(GeoDatabase.shared.bookForId(viewModel.bookId).fullName): \(viewModel.chapter)" )
                             .navigationBarItems(trailing: Button("Done", action: {
                                 displayModalDetailView = false
                             }))

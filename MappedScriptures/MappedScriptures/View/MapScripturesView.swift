@@ -104,14 +104,8 @@ struct DetailMapView: View {
     }
 }
 
-//min plus max / 2 is the half way point
-
 // NEED TO:
+
 // Figure out how to use 1 instead of 0
-// Create a central point that is computed for each chapter
-    // This is working but not for tablet
-// Zoom to a location when click on hyper link in scripture
-    // Not working for tablet
 // Popup with name when you click pin
     // On tap gesture does not seem to be working
-// Zoom to see all points on the map

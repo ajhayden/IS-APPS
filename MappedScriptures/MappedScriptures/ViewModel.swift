@@ -26,6 +26,7 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
     @Published var numChapters = 0
     
     @Published var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137), span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
+    @Published var currentLocation = 0
     
     var isDetailVisable = false
     
@@ -88,6 +89,11 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
             if minLatitude == 1000000000.0 {
                 self.mapRegion.center.latitude = 31.7683
                 self.mapRegion.center.longitude = 35.2137
+                self.mapRegion.span.latitudeDelta = 2
+                self.mapRegion.span.longitudeDelta = 2
+            } else if uniqueGeoPlaces.count == 1 {
+                self.mapRegion.center.latitude = uniqueGeoPlaces[0].latitude
+                self.mapRegion.center.longitude = uniqueGeoPlaces[0].longitude
                 self.mapRegion.span.latitudeDelta = 2
                 self.mapRegion.span.longitudeDelta = 2
             } else {
