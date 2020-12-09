@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ChapterContentBrowser: View {
-    
     @ObservedObject var viewModel: ViewModel
+    
     var chapter: Int
+    
     @State private var displayModalDetailView = false
     
     var book: Book {
@@ -26,7 +27,7 @@ struct ChapterContentBrowser: View {
                     viewModel.mapRegion.center.longitude = GeoDatabase.shared.geoPlaceForId(geoPlaceId)?.longitude ?? 0.0
                     viewModel.mapRegion.span.latitudeDelta = 0.15
                     viewModel.mapRegion.span.longitudeDelta = 0.15
-                    viewModel.currentLocation = geoPlaceId
+                    viewModel.currentLocation = GeoDatabase.shared.geoPlaceForId(geoPlaceId)?.placename ?? ""
                     
                     if !viewModel.isDetailVisable {
                         displayModalDetailView = true
@@ -42,12 +43,15 @@ struct ChapterContentBrowser: View {
                 })
                 .onAppear {
                     viewModel.chapter = chapter
+                    viewModel.currentLocation = GeoDatabase.shared.bookForId(viewModel.bookId).citeFull + " \(chapter)"
                 }
                 .sheet(isPresented: $displayModalDetailView) {
                     NavigationView {
                         DetailMapView(viewModel: viewModel)
-                            .navigationBarTitle(viewModel.currentLocation > 0 ? "\(GeoDatabase.shared.geoPlaceForId(viewModel.currentLocation)!.placename)"
-                                : "\(GeoDatabase.shared.bookForId(viewModel.bookId).fullName): \(viewModel.chapter)" )
+                            .navigationBarTitle(viewModel.currentLocation.contains("0")
+                                                    ? viewModel.currentLocation.replacingOccurrences(of: "0", with: "")
+                                                    : viewModel.currentLocation,
+                                                    displayMode: .inline)
                             .navigationBarItems(trailing: Button("Done", action: {
                                 displayModalDetailView = false
                             }))

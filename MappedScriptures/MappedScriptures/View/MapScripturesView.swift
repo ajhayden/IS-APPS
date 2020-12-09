@@ -14,6 +14,8 @@ struct MapScripturesView: View {
         NavigationView {
             VolumeBrowser(viewModel: viewModel)
             PrimaryDetailMapView(viewModel: viewModel)
+                .navigationBarTitle(viewModel.currentLocation,
+                    displayMode: .inline)
         }
     }
 }
@@ -35,13 +37,13 @@ struct VolumeBrowser: View {
 
 struct BookListBrowser: View {
     @ObservedObject var viewModel: ViewModel
-    var volumeId: Int
     
-    // Write a decion for more than one chapter
+    var volumeId: Int
     
     var body: some View {
         List {
             ForEach(GeoDatabase.shared.booksForParentId(viewModel.volumeId)) { book in
+//                Text("NC: \(GeoDatabase.shared.bookForId(book.id).numChapters ?? 12)")
                 NavigationLink(book.citeFull, destination:
                                 ChapterListBrowser(viewModel: viewModel, bookId: book.id))
                     .isDetailLink(false)
@@ -51,12 +53,14 @@ struct BookListBrowser: View {
         .navigationTitle(GeoDatabase.shared.bookForId(viewModel.volumeId).citeFull)
         .onAppear {
             viewModel.volumeId = volumeId
+            viewModel.currentLocation = GeoDatabase.shared.bookForId(viewModel.volumeId).citeFull
         }
     }
 }
 
 struct ChapterListBrowser: View {
     @ObservedObject var viewModel: ViewModel
+    
     var bookId: Int
     
     var body: some View {
@@ -79,6 +83,7 @@ struct ChapterListBrowser: View {
         .navigationTitle(GeoDatabase.shared.bookForId(viewModel.bookId).citeFull)
         .onAppear {
             viewModel.bookId = bookId
+            viewModel.currentLocation = GeoDatabase.shared.bookForId(viewModel.bookId).citeFull
         }
     }
 }
@@ -109,3 +114,5 @@ struct DetailMapView: View {
 // Figure out how to use 1 instead of 0
 // Popup with name when you click pin
     // On tap gesture does not seem to be working
+// What are extra ideas to implement for the project
+// Also I noticed when you rotate the device the geometry reader disables the map button

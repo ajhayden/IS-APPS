@@ -9,7 +9,6 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    
     @ObservedObject var viewModel: ViewModel
 //    @State var isShowingPopover = false
     
@@ -20,14 +19,16 @@ struct MapView: View {
                                 latitude: geoPlace.latitude,
                                 longitude: geoPlace.longitude),
                               anchorPoint: CGPoint(x:0.5, y:0.5)) {
-                    Image(systemName: "mappin")
-                        .font(.system(size: 30))
-                        .foregroundColor(Color(red: 0.75, green: 0.1, blue:0.1))
-                        .shadow(radius: 1, x: 1, y: 1)
-                        .onTapGesture {
-//                            isShowingPopover = true
-                            print("Selected: \(geoPlace.placename)")
-                        }
+                    HStack {
+                        Image(systemName: "mappin")
+                            .font(.system(size: 30))
+                            .foregroundColor(Color(red: 0.75, green: 0.1, blue:0.1))
+                            .shadow(radius: 1, x: 1, y: 1)
+//                        Text("Location")
+                    }
+                    .onTapGesture {
+                        print("Selected: \(geoPlace.placename)")
+                    }
 //                        .popover(isPresented: $isShowingPopover) {
 //                            Text("Hi from a popover")
 //                                .padding()
