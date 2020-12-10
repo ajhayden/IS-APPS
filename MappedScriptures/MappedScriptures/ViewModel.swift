@@ -80,10 +80,6 @@ class ViewModel: ObservableObject, GeoPlaceCollector {
                     minLongitude = place.longitude
                 }
             }
-            print(maxLatitude)
-            print(minLatitude)
-            print(maxLongitude)
-            print(minLongitude)
             
             if minLatitude == 1000000000.0 {
                 self.mapRegion.center.latitude = 31.7683

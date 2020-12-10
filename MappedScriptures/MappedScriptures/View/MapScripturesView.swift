@@ -13,7 +13,7 @@ struct MapScripturesView: View {
     var body: some View {
         NavigationView {
             VolumeBrowser(viewModel: viewModel)
-            PrimaryDetailMapView(viewModel: viewModel)
+            PrimaryMapView(viewModel: viewModel)
                 .navigationBarTitle(viewModel.currentLocation,
                     displayMode: .inline)
         }
@@ -88,12 +88,12 @@ struct ChapterListBrowser: View {
     }
 }
 
-struct PrimaryDetailMapView: View {
+struct PrimaryMapView: View {
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         GeometryReader { geometry in
-            DetailMapView(viewModel: viewModel)
+            MapView(viewModel: viewModel)
                 .onAppear {
                     viewModel.isDetailVisable = geometry.frame(in: .global).maxY > 0
                 }
@@ -101,18 +101,12 @@ struct PrimaryDetailMapView: View {
     }
 }
 
-struct DetailMapView: View {
-    @ObservedObject var viewModel: ViewModel
-    
-    var body: some View {
-        MapView(viewModel: viewModel)
-    }
-}
-
 // NEED TO:
 
-// Figure out how to use 1 instead of 0
 // Popup with name when you click pin
     // On tap gesture does not seem to be working
 // What are extra ideas to implement for the project
 // Also I noticed when you rotate the device the geometry reader disables the map button
+// What is the cleanest way to organize the map views and browser view
+
+

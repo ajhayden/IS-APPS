@@ -47,7 +47,7 @@ struct ChapterContentBrowser: View {
                 }
                 .sheet(isPresented: $displayModalDetailView) {
                     NavigationView {
-                        DetailMapView(viewModel: viewModel)
+                        MapView(viewModel: viewModel)
                             .navigationBarTitle(viewModel.currentLocation.contains("0")
                                                     ? viewModel.currentLocation.replacingOccurrences(of: "0", with: "")
                                                     : viewModel.currentLocation,

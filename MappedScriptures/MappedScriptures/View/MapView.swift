@@ -10,7 +10,6 @@ import MapKit
 
 struct MapView: View {
     @ObservedObject var viewModel: ViewModel
-//    @State var isShowingPopover = false
     
     var body: some View {
         Map(coordinateRegion: $viewModel.mapRegion,
@@ -24,16 +23,10 @@ struct MapView: View {
                             .font(.system(size: 30))
                             .foregroundColor(Color(red: 0.75, green: 0.1, blue:0.1))
                             .shadow(radius: 1, x: 1, y: 1)
-//                        Text("Location")
                     }
                     .onTapGesture {
                         print("Selected: \(geoPlace.placename)")
                     }
-//                        .popover(isPresented: $isShowingPopover) {
-//                            Text("Hi from a popover")
-//                                .padding()
-//                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                        }
                 }
             }
             .edgesIgnoringSafeArea(.all)
