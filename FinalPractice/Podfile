@@ -1,0 +1,8 @@
+platform :ios, '14.2'
+use_frameworks!
+
+target 'FinalPractice' do
+
+  pod 'GRDB.swift'
+
+end
